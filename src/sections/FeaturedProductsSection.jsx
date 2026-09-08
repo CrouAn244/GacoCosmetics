@@ -1,0 +1,121 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ShoppingBag, Gift, Sparkles } from 'lucide-react';
+import { ASSETS } from '../utils/constants';
+
+export const FeaturedProductsSection = () => {
+  const products = [
+    {
+      id: 'gaco-single',
+      name: 'Son Dưỡng Gấc & Dầu Dừa Bến Tre (5g)',
+      subtitle: 'Màng gấc tươi ép lạnh • Phục hồi sắc hồng tự nhiên • 0% Chì Quatest 3',
+      price: '79.000 đ',
+      image: ASSETS.hero,
+      badge: 'THỎI ĐƠN NGUYÊN BẢN',
+      stock: '● Sẵn sàng giao ngay trong 24h',
+      tag: 'Phù hợp dùng thử & đi học hàng ngày'
+    },
+    {
+      id: 'gaco-combo',
+      name: 'Hộp Quà Gaco Botanical Gift Set (2 Thỏi)',
+      subtitle: 'Tặng túi vải Canvas dệt mộc in logo Gaco + Thiệp viết tay tri ân nông hộ Bến Tre',
+      price: '149.000 đ',
+      oldPrice: '158.000 đ',
+      image: ASSETS.swatch,
+      badge: 'BỘ QUÀ TẶNG BẢN ĐỊA',
+      stock: '● Miễn phí giao hàng toàn quốc',
+      tag: 'Ưu đãi sinh viên & quà tặng mẹ bầu'
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-[#FEFBF4] border-b border-[#E7E5DF]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-11">
+        
+        {/* Section Title */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 pb-4 border-b border-[#E7E5DF]">
+          <div>
+            <span className="font-condensed text-xs uppercase tracking-[0.25em] text-[#9E2A2B] font-bold block">
+              BỘ SƯU TẬP NĂNG LƯỢNG ĐỎ
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-heading font-medium text-[#1F1C17] mt-1">
+              Sản phẩm son dưỡng thuần chay Gaco
+            </h2>
+          </div>
+
+          <Link
+            to="/product"
+            className="font-condensed text-base uppercase tracking-wider text-[#1F1C17] hover:text-[#9E2A2B] font-bold flex items-center gap-1.5"
+          >
+            <span>Khám phá chi tiết công thức</span>
+            <span>→</span>
+          </Link>
+        </div>
+
+        {/* Product Card Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {products.map((item) => (
+            <div
+              key={item.id}
+              className="bg-[#FEFBF4] border border-[#E7E5DF] flex flex-col justify-between group hover:border-[#9E2A2B] transition-colors"
+            >
+              {/* Product Image */}
+              <div className="relative aspect-square overflow-hidden bg-[#F4EFE6]">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3 bg-[#9E2A2B] text-[#FEFBF4] font-condensed text-[11px] uppercase tracking-wider px-3 py-1 font-bold">
+                  {item.badge}
+                </div>
+              </div>
+
+              {/* Product Info Bar */}
+              <div className="p-5 flex items-end justify-between border-t border-[#E7E5DF]">
+                <div className="space-y-1.5 pr-2">
+                  <span className="text-[10px] font-condensed uppercase tracking-wider text-[#C5A25D] font-bold block">
+                    {item.tag}
+                  </span>
+                  <h4 className="font-heading font-semibold text-lg text-[#1F1C17] group-hover:text-[#9E2A2B] transition-colors leading-snug">
+                    <Link to="/product">{item.name}</Link>
+                  </h4>
+                  <p className="text-xs text-[#97958F] line-clamp-2 leading-relaxed font-light">{item.subtitle}</p>
+                  
+                  <div className="pt-2 flex items-center gap-2">
+                    <span className="font-bold text-xl text-[#9E2A2B] font-heading">{item.price}</span>
+                    {item.oldPrice && (
+                      <span className="text-xs text-[#97958F] line-through">{item.oldPrice}</span>
+                    )}
+                  </div>
+                  <span className="text-[11px] text-[#5E7A4A] font-medium block">{item.stock}</span>
+                </div>
+
+                {/* Gaco Ruby Add Button */}
+                <Link
+                  to="/product"
+                  className="w-12 h-12 bg-[#9E2A2B] hover:bg-[#7C1D1E] text-white flex items-center justify-center transition-colors shrink-0"
+                  aria-label="Thêm vào giỏ hàng"
+                >
+                  <ShoppingBag size={20} />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Gaco Sustainability Footnote */}
+        <div className="mt-10 p-4 border border-[#E7E5DF] bg-[#F4EFE6] max-w-4xl mx-auto flex items-center justify-between gap-4 text-xs text-[#666055] font-light">
+          <span className="flex items-center gap-2">
+            <Sparkles size={16} className="text-[#9E2A2B]" />
+            <span>Bao bì giấy Kraft phân hủy sinh học 100% • Tặng kèm túi vải thô khi đặt combo</span>
+          </span>
+          <Link to="/about" className="font-condensed uppercase tracking-wider text-xs font-bold text-[#1F1C17] hover:text-[#9E2A2B] underline">
+            Tìm hiểu thêm
+          </Link>
+        </div>
+
+      </div>
+    </section>
+  );
+};

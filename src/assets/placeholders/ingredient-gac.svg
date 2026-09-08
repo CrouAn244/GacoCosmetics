@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="gacBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF5EE"/>
+      <stop offset="100%" stop-color="#F9E2D2"/>
+    </radialGradient>
+    <linearGradient id="rubyOil" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF7043"/>
+      <stop offset="50%" stop-color="#E64A19"/>
+      <stop offset="100%" stop-color="#BF360C"/>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="500" rx="24" fill="url(#gacBg)"/>
+  
+  <!-- Halved Gac Illustration -->
+  <g transform="translate(100, 80)">
+    <!-- Rind -->
+    <path d="M50 140 C20 60 100 10 190 20 C280 30 340 100 320 200 C300 280 200 320 120 290 C60 270 20 200 50 140 Z" fill="#E65100"/>
+    <path d="M70 145 C45 75 110 32 185 40 C260 48 310 110 295 190 C280 255 195 290 125 265 C75 250 45 190 70 145 Z" fill="#FFB74D"/>
+    <!-- Seed Arils -->
+    <circle cx="140" cy="120" r="38" fill="url(#rubyOil)"/>
+    <circle cx="210" cy="110" r="42" fill="url(#rubyOil)"/>
+    <circle cx="235" cy="180" r="40" fill="url(#rubyOil)"/>
+    <circle cx="170" cy="205" r="44" fill="url(#rubyOil)"/>
+    <circle cx="115" cy="180" r="35" fill="url(#rubyOil)"/>
+    <!-- Gac Seeds Inner -->
+    <ellipse cx="140" cy="120" rx="16" ry="10" fill="#4E0D03"/>
+    <ellipse cx="210" cy="110" rx="18" ry="11" fill="#4E0D03"/>
+    <ellipse cx="235" cy="180" rx="17" ry="11" fill="#4E0D03"/>
+    <ellipse cx="170" cy="205" rx="18" ry="12" fill="#4E0D03"/>
+  </g>
+
+  <!-- Glowing Cold-Pressed Ruby Oil Drop -->
+  <g transform="translate(370, 310)">
+    <path d="M0 -40 C25 0 35 25 35 45 C35 70 20 90 0 90 C-20 90 -35 70 -35 45 C-35 25 -25 0 0 -40 Z" fill="url(#rubyOil)"/>
+    <ellipse cx="-10" cy="40" rx="6" ry="15" fill="#FFCCBC" opacity="0.6"/>
+  </g>
+
+  <!-- Badge text -->
+  <rect x="50" y="420" width="400" height="48" rx="24" fill="#E86A33"/>
+  <text x="250" y="450" font-family="Poppins, sans-serif" font-weight="600" font-size="16" fill="#FFFFFF" text-anchor="middle">Beta-Carotene &amp; Lycopene Tự Nhiên</text>
+</svg>

@@ -1,0 +1,30 @@
+<!-- Gallery 6: Safety Certifications & Testing -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <rect width="600" height="600" rx="24" fill="#F4F8F4"/>
+  
+  <!-- Certificate Stamp 1: 0% Lead -->
+  <g transform="translate(180, 220)">
+    <circle cx="0" cy="0" r="90" fill="#FFFFFF" stroke="#E86A33" stroke-width="4" stroke-dasharray="6,4"/>
+    <circle cx="0" cy="0" r="76" fill="#FDF2EC"/>
+    <text x="0" y="-15" font-family="Poppins" font-weight="bold" font-size="28" fill="#E86A33" text-anchor="middle">0% CHÌ</text>
+    <text x="0" y="15" font-family="Inter" font-weight="600" font-size="11" fill="#795548" text-anchor="middle">KIỂM NGHIỆM</text>
+    <text x="0" y="32" font-family="Inter" font-size="10" fill="#795548" text-anchor="middle">TRUNG TÂM QUATEST</text>
+  </g>
+
+  <!-- Certificate Stamp 2: 100% Vegan -->
+  <g transform="translate(420, 220)">
+    <circle cx="0" cy="0" r="90" fill="#FFFFFF" stroke="#2E7D32" stroke-width="4" stroke-dasharray="6,4"/>
+    <circle cx="0" cy="0" r="76" fill="#EBF5EB"/>
+    <text x="0" y="-15" font-family="Poppins" font-weight="bold" font-size="24" fill="#2E7D32" text-anchor="middle">THUẦN CHAY</text>
+    <text x="0" y="15" font-family="Inter" font-weight="600" font-size="11" fill="#2E7D32" text-anchor="middle">100% VEGAN</text>
+    <text x="0" y="32" font-family="Inter" font-size="10" fill="#2E7D32" text-anchor="middle">CRUELTY FREE</text>
+  </g>
+
+  <!-- Eco Commitment Banner -->
+  <rect x="100" y="370" width="400" height="70" rx="16" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="2"/>
+  <text x="300" y="405" font-family="Poppins" font-weight="600" font-size="14" fill="#2B2B2B" text-anchor="middle">Cam kết an toàn tuyệt đối cho Mẹ bầu &amp; Trẻ nhỏ</text>
+  <text x="300" y="425" font-family="Inter" font-size="12" fill="#666" text-anchor="middle">Không Paraben • Không Kim loại nặng • Không Hương liệu tổng hợp</text>
+
+  <rect x="50" y="520" width="500" height="40" rx="20" fill="#FFFFFF" opacity="0.9"/>
+  <text x="300" y="546" font-family="Inter" font-weight="600" font-size="14" fill="#2E7D32" text-anchor="middle">Phiếu kiểm nghiệm chất lượng và an toàn thực vật</text>
+</svg>

@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #FEFBF4;
+  --text-primary: #1F1C17;
+  --color-gold: #C5A25D;
+  --color-border: #E7E5DF;
+  --color-muted: #97958F;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: 'Vollkorn', serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.font-serif-luxury {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-condensed {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+/* Cocoon Style Buttons */
+.button-cocoon-gold {
+  background-color: #C5A25D;
+  color: #FEFBF4;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+.button-cocoon-gold:hover {
+  background-color: #8C6F2E;
+}
+
+.button-cocoon-dark {
+  background-color: #1F1C17;
+  color: #FEFBF4;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+.button-cocoon-dark:hover {
+  background-color: #38342E;
+}
+
+.button-cocoon-outline {
+  border: 1px solid #1F1C17;
+  color: #1F1C17;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+/* Gaco Signature Brand Classes */
+.button-gaco-ruby {
+  background-color: #9E2A2B;
+  color: #FEFBF4;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  border: 1px solid #9E2A2B;
+}
+.button-gaco-ruby:hover {
+  background-color: #7C1D1E;
+  border-color: #7C1D1E;
+}
+
+.button-gaco-outline-ruby {
+  border: 1px solid #9E2A2B;
+  color: #9E2A2B;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+.button-gaco-outline-ruby:hover {
+  background-color: #9E2A2B;
+  color: #FEFBF4;
+}
+
+/* Gaco Botanical Quality Seal */
+.stamp-gaco-ruby {
+  border: 1.5px dashed #9E2A2B;
+  color: #9E2A2B;
+  padding: 0.5rem 1rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(158, 42, 43, 0.04);
+}
+
+/* Hairline borders */
+.border-hairline {
+  border-color: #E7E5DF;
+}
+
+/* Running Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Lenis Recommended */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F4EFE6;
+}
+::-webkit-scrollbar-thumb {
+  background: #C5A25D;
+}
