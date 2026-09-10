@@ -24,33 +24,33 @@ export const Navbar = () => {
 
   return (
     <>
-      {/* Gaco & Cocoon Announcement Bar with Persona Switcher */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-[#1F1C17] text-[#FEFBF4] text-[11px] sm:text-xs tracking-wider py-1.5 px-4 font-body border-b border-[#38342E]">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
+      {/* Gaco Announcement Bar with Persona Switcher */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-8 bg-[#1F1C17] text-[#FEFBF4] text-[11px] sm:text-xs tracking-wider px-5 font-body border-b border-[#38342E] flex items-center">
+        <div className="max-w-7xl w-full mx-auto flex items-center justify-between gap-2">
           <div className="flex items-center gap-3 truncate">
             <span className="font-medium truncate">
-              Freeship toàn quốc từ 149.000 đ • 100% Thuần chay từ nông sản Việt
+              {t('nav.announcement')}
             </span>
             <span className="hidden lg:inline text-[#C5A25D]">•</span>
             <span className="hidden lg:inline text-[#FEFBF4]/85">
-              Kiểm nghiệm Quatest 3 không chì
+              {t('nav.announcementExtra')}
             </span>
           </div>
 
           {/* Gaco Persona Quick Switcher - Unique Gaco Feature */}
           <div className="hidden sm:flex items-center gap-2 text-[10px] font-condensed uppercase tracking-wider shrink-0">
-            <span className="text-[#97958F]">Đặc quyền:</span>
+            <span className="text-[#97958F]">{t('nav.perksLabel')}</span>
             <Link
               to="/account"
               className="px-2 py-0.5 border border-[#C5A25D] text-[#C5A25D] hover:bg-[#C5A25D] hover:text-[#1F1C17] transition-colors font-bold"
             >
-              🎓 Sinh Viên (79K)
+              {t('nav.studentPerk')}
             </Link>
             <Link
               to="/account"
               className="px-2 py-0.5 border border-[#7BAD34] text-[#7BAD34] hover:bg-[#7BAD34] hover:text-white transition-colors font-bold"
             >
-              🌿 Mẹ Bầu (0% Chì)
+              {t('nav.momPerk')}
             </Link>
           </div>
         </div>
@@ -58,11 +58,11 @@ export const Navbar = () => {
 
       {/* Main Header */}
       <header
-        className={`fixed top-[28px] sm:top-[31px] left-0 right-0 z-40 bg-[#FEFBF4] transition-all duration-300 border-b border-[#E7E5DF] ${
-          scrolled ? 'py-2.5 shadow-xs' : 'py-3.5'
+        className={`fixed top-8 left-0 right-0 z-40 bg-[#FEFBF4] transition-all duration-300 border-b border-[#E7E5DF] ${
+          scrolled ? 'py-2 shadow-xs' : 'py-2.5 sm:py-3'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-11 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-5 flex items-center justify-between">
           
           {/* Desktop Left Menu (Cocoon Style) */}
           <div className="hidden lg:flex items-center gap-7 flex-1">
@@ -78,7 +78,7 @@ export const Navbar = () => {
                 }`
               }
             >
-              Sản phẩm
+              {t('nav.product')}
             </NavLink>
 
             <NavLink
@@ -89,7 +89,7 @@ export const Navbar = () => {
                 }`
               }
             >
-              Tìm hiểu nguyên liệu
+              {t('nav.ingredients')}
             </NavLink>
 
             <NavLink
@@ -100,7 +100,7 @@ export const Navbar = () => {
                 }`
               }
             >
-              Câu chuyện thương hiệu
+              {t('nav.about')}
             </NavLink>
 
             <NavLink
@@ -111,7 +111,7 @@ export const Navbar = () => {
                 }`
               }
             >
-              Bài viết
+              {t('nav.blog')}
             </NavLink>
           </div>
 
@@ -156,7 +156,7 @@ export const Navbar = () => {
                 }`
               }
             >
-              Liên hệ
+              {t('nav.contact')}
             </NavLink>
 
             <LangToggle />
@@ -189,7 +189,8 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile Right Icons */}
-          <div className="lg:hidden flex items-center gap-3">
+          <div className="lg:hidden flex items-center gap-2.5">
+            <LangToggle />
             <Link to="/product" className="relative text-[#1F1C17] p-1">
               <ShoppingBag size={22} />
               <span className="absolute -top-1 -right-1 bg-[#C5A25D] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">

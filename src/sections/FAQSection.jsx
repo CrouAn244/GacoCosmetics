@@ -23,10 +23,10 @@ export const FAQSection = () => {
         
         <div className="text-center mb-16">
           <span className="text-xs font-condensed uppercase tracking-[0.25em] text-[#C5A25D] font-bold">
-            GIẢI ĐÁP THẮC MẮC
+            {t('faq.badge')}
           </span>
           <h2 className="text-3xl sm:text-4xl font-heading font-normal text-[#1F1C17] mt-2">
-            Câu Hỏi Thường Gặp Về Son Gaco
+            {t('faq.title')}
           </h2>
         </div>
 

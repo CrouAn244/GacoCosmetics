@@ -5,7 +5,8 @@ import { useAuth } from '../../hooks/useAuth';
 import { Mail, Lock, User, Phone, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export const AuthModal = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEn = (i18n.language || 'vi').toLowerCase().startsWith('en');
   const { isAuthModalOpen, authModalTab, setAuthModalTab, closeAuthModal, login, register } = useAuth();
 
   const [formData, setFormData] = useState({
@@ -28,7 +29,7 @@ export const AuthModal = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      setErrorMsg('Vui lòng nhập đầy đủ Email và Mật khẩu.');
+      setErrorMsg(isEn ? 'Please fill in both Email and Password.' : 'Vui lòng nhập đầy đủ Email và Mật khẩu.');
       return;
     }
     setLoading(true);
@@ -40,14 +41,14 @@ export const AuthModal = () => {
         setSuccessMsg('');
       }, 1500);
     } else {
-      setErrorMsg(res.message || 'Đăng nhập không thành công.');
+      setErrorMsg(res.message || (isEn ? 'Sign in failed.' : 'Đăng nhập không thành công.'));
     }
   };
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.password || !formData.phone) {
-      setErrorMsg('Vui lòng điền đầy đủ các thông tin bắt buộc.');
+      setErrorMsg(isEn ? 'Please fill in all required fields.' : 'Vui lòng điền đầy đủ các thông tin bắt buộc.');
       return;
     }
     setLoading(true);
@@ -59,15 +60,19 @@ export const AuthModal = () => {
         setSuccessMsg('');
       }, 1800);
     } else {
-      setErrorMsg(res.message || 'Đăng ký thất bại.');
+      setErrorMsg(res.message || (isEn ? 'Registration failed.' : 'Đăng ký thất bại.'));
     }
   };
+
+  const modalTitle = authModalTab === 'login'
+    ? (isEn ? 'MEMBER SIGN IN' : 'ĐĂNG NHẬP THÀNH VIÊN')
+    : (isEn ? 'REGISTER GACO GREEN CIRCLE' : 'ĐĂNG KÝ GACO GREEN CIRCLE');
 
   return (
     <Modal
       isOpen={isAuthModalOpen}
       onClose={closeAuthModal}
-      title={authModalTab === 'login' ? 'ĐĂNG NHẬP THÀNH VIÊN' : 'ĐĂNG KÝ GACO GREEN CIRCLE'}
+      title={modalTitle}
       maxWidth="max-w-md"
     >
       {/* Cocoon Style Sub Tabs */}
@@ -81,7 +86,7 @@ export const AuthModal = () => {
               : 'text-[#97958F] hover:text-[#1F1C17]'
           }`}
         >
-          ĐĂNG NHẬP
+          {isEn ? 'SIGN IN' : 'ĐĂNG NHẬP'}
         </button>
         <button
           type="button"
@@ -92,7 +97,7 @@ export const AuthModal = () => {
               : 'text-[#97958F] hover:text-[#1F1C17]'
           }`}
         >
-          TẠO TÀI KHOẢN MỚI
+          {isEn ? 'CREATE ACCOUNT' : 'TẠO TÀI KHOẢN MỚI'}
         </button>
       </div>
 
@@ -114,7 +119,7 @@ export const AuthModal = () => {
         <form onSubmit={handleLoginSubmit} className="space-y-4">
           <div>
             <label className="block text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] mb-1.5">
-              Địa chỉ Email *
+              {t('auth.emailLabel')} *
             </label>
             <div className="relative">
               <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#97958F]" size={15} />
@@ -132,7 +137,7 @@ export const AuthModal = () => {
 
           <div>
             <label className="block text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] mb-1.5">
-              Mật khẩu *
+              {t('auth.passwordLabel')} *
             </label>
             <div className="relative">
               <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#97958F]" size={15} />
@@ -151,9 +156,9 @@ export const AuthModal = () => {
           <div className="flex items-center justify-between text-xs text-[#666055]">
             <label className="flex items-center gap-2 cursor-pointer">
               <input type="checkbox" defaultChecked className="accent-[#C5A25D]" />
-              <span>Ghi nhớ đăng nhập</span>
+              <span>{t('auth.rememberMe')}</span>
             </label>
-            <span className="hover:text-[#1F1C17] cursor-pointer">Quên mật khẩu?</span>
+            <span className="hover:text-[#1F1C17] cursor-pointer">{t('auth.forgotPassword')}</span>
           </div>
 
           <button
@@ -161,17 +166,17 @@ export const AuthModal = () => {
             disabled={loading}
             className="w-full py-3 button-cocoon-dark text-xs tracking-[0.2em] font-bold mt-2"
           >
-            {loading ? 'ĐANG XỬ LÝ...' : 'ĐĂNG NHẬP VÀO GACO'}
+            {loading ? (isEn ? 'PROCESSING...' : 'ĐANG XỬ LÝ...') : (isEn ? 'SIGN IN TO GACO' : 'ĐĂNG NHẬP VÀO GACO')}
           </button>
 
           <p className="text-center text-xs text-[#666055] mt-4">
-            Chưa có tài khoản?{' '}
+            {t('auth.noAccount')}{' '}
             <button
               type="button"
               onClick={() => setAuthModalTab('register')}
               className="font-bold text-[#1F1C17] hover:text-[#C5A25D] underline"
             >
-              Đăng ký ngay nhận Voucher 149K
+              {isEn ? 'Register now to get 149K Voucher' : 'Đăng ký ngay nhận Voucher 149K'}
             </button>
           </p>
         </form>
@@ -179,7 +184,7 @@ export const AuthModal = () => {
         <form onSubmit={handleRegisterSubmit} className="space-y-3.5">
           <div>
             <label className="block text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] mb-1">
-              Họ và tên thành viên *
+              {t('auth.nameLabel')} *
             </label>
             <div className="relative">
               <User className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#97958F]" size={15} />
@@ -198,7 +203,7 @@ export const AuthModal = () => {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] mb-1">
-                Email *
+                {t('auth.emailLabel')} *
               </label>
               <input
                 type="email"
@@ -212,7 +217,7 @@ export const AuthModal = () => {
             </div>
             <div>
               <label className="block text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] mb-1">
-                Số điện thoại *
+                {t('auth.phoneLabel')} *
               </label>
               <input
                 type="tel"
@@ -228,7 +233,7 @@ export const AuthModal = () => {
 
           <div>
             <label className="block text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] mb-1">
-              Mật khẩu đăng nhập *
+              {t('auth.passwordLabel')} *
             </label>
             <input
               type="password"
@@ -236,15 +241,15 @@ export const AuthModal = () => {
               required
               value={formData.password}
               onChange={handleChange}
-              placeholder="Tối thiểu 6 ký tự"
+              placeholder={isEn ? 'Minimum 6 characters' : 'Tối thiểu 6 ký tự'}
               className="w-full px-3 py-2 border border-[#E7E5DF] bg-[#FEFBF4] text-xs sm:text-sm text-[#1F1C17] focus:border-[#C5A25D] outline-none transition-colors"
             />
           </div>
 
-          {/* Persona Selection (SOSTAC Tailored Audience) */}
+          {/* Persona Selection */}
           <div className="pt-1">
             <label className="block text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] mb-1.5">
-              Nhóm nhu cầu của bạn (để nhận voucher cá nhân):
+              {t('auth.personaLabel')}
             </label>
             <div className="space-y-2">
               <label className={`flex items-center gap-3 p-2.5 border text-xs cursor-pointer transition-colors ${
@@ -260,7 +265,7 @@ export const AuthModal = () => {
                   onChange={handleChange}
                   className="accent-[#C5A25D]"
                 />
-                <span>Học sinh – Sinh viên (Trị thâm môi học đường, giá ưu đãi)</span>
+                <span>{isEn ? 'Student / Gen Z (Campus lip discoloration relief, student pricing)' : 'Học sinh – Sinh viên (Trị thâm môi học đường, giá ưu đãi)'}</span>
               </label>
 
               <label className={`flex items-center gap-3 p-2.5 border text-xs cursor-pointer transition-colors ${
@@ -276,7 +281,7 @@ export const AuthModal = () => {
                   onChange={handleChange}
                   className="accent-[#7BAD34]"
                 />
-                <span>Mẹ bầu &amp; Clean Beauty (Yêu cầu 0% chì, 100% an toàn)</span>
+                <span>{isEn ? 'Expecting Mother & Clean Beauty (0% lead, 100% pregnancy safe)' : 'Mẹ bầu & Clean Beauty (Yêu cầu 0% chì, 100% an toàn)'}</span>
               </label>
             </div>
           </div>
@@ -286,17 +291,17 @@ export const AuthModal = () => {
             disabled={loading}
             className="w-full py-3 button-cocoon-gold text-xs tracking-[0.2em] font-bold mt-3"
           >
-            {loading ? 'ĐANG TẠO HỒ SƠ...' : 'HOÀN TẤT ĐĂNG KÝ & NHẬN VOUCHER'}
+            {loading ? (isEn ? 'CREATING PROFILE...' : 'ĐANG TẠO HỒ SƠ...') : (isEn ? 'COMPLETE REGISTRATION & GET VOUCHER' : 'HOÀN TẤT ĐĂNG KÝ & NHẬN VOUCHER')}
           </button>
 
           <p className="text-center text-xs text-[#666055] mt-2">
-            Đã có tài khoản?{' '}
+            {t('auth.hasAccount')}{' '}
             <button
               type="button"
               onClick={() => setAuthModalTab('login')}
               className="font-bold text-[#1F1C17] hover:text-[#C5A25D] underline"
             >
-              Đăng nhập ngay
+              {isEn ? 'Sign in here' : 'Đăng nhập ngay'}
             </button>
           </p>
         </form>

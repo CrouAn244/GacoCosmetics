@@ -4,15 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Search, ChevronRight, User, ShoppingBag } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth';
+import { LangToggle } from '../common/LangToggle';
 
 export const MobileDrawer = ({ isOpen, onClose }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { isAuthenticated, currentUser, openAuthModal, logout } = useAuth();
-
-  const toggleLanguage = () => {
-    const nextLang = i18n.language === 'vi' ? 'en' : 'vi';
-    i18n.changeLanguage(nextLang);
-  };
 
   return (
     <AnimatePresence>
@@ -70,7 +66,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
               <div className="mt-5 pb-2 border-b border-[#E7E5DF] flex items-center gap-2">
                 <input
                   type="text"
-                  placeholder="Tìm kiếm sản phẩm, bài viết..."
+                  placeholder={t('nav.searchPlaceholder')}
                   className="w-full bg-transparent text-sm placeholder-[#97958F] text-[#1F1C17] focus:outline-none"
                 />
                 <Search size={16} className="text-[#97958F]" />
@@ -84,15 +80,15 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                     onClick={onClose}
                     className="flex items-center justify-between py-2 text-xl font-heading font-bold text-[#1F1C17] hover:text-[#C5A25D]"
                   >
-                    <span>Sản phẩm</span>
+                    <span>{t('nav.product')}</span>
                     <ChevronRight size={18} className="text-[#97958F]" />
                   </NavLink>
                   <div className="pl-3 py-1 space-y-2 text-sm text-[#97958F]">
                     <NavLink to="/product" onClick={onClose} className="block hover:text-[#1F1C17]">
-                      • Son Dưỡng Gấc &amp; Dừa (79.000đ)
+                      • {t('featured.singleName')} (79.000đ)
                     </NavLink>
                     <NavLink to="/product" onClick={onClose} className="block hover:text-[#1F1C17]">
-                      • Combo Sinh Viên &amp; Mẹ Bầu (149.000đ)
+                      • {t('featured.comboName')} (149.000đ)
                     </NavLink>
                   </div>
                 </div>
@@ -103,7 +99,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                     onClick={onClose}
                     className="flex items-center justify-between py-2 text-xl font-heading font-bold text-[#1F1C17] hover:text-[#C5A25D]"
                   >
-                    <span>Tìm hiểu nguyên liệu</span>
+                    <span>{t('nav.ingredients')}</span>
                     <ChevronRight size={18} className="text-[#97958F]" />
                   </NavLink>
                 </div>
@@ -114,7 +110,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                     onClick={onClose}
                     className="flex items-center justify-between py-2 text-xl font-heading font-bold text-[#1F1C17] hover:text-[#C5A25D]"
                   >
-                    <span>Câu chuyện thương hiệu</span>
+                    <span>{t('nav.about')}</span>
                     <ChevronRight size={18} className="text-[#97958F]" />
                   </NavLink>
                 </div>
@@ -125,7 +121,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                     onClick={onClose}
                     className="flex items-center justify-between py-2 text-xl font-heading font-bold text-[#1F1C17] hover:text-[#C5A25D]"
                   >
-                    <span>Bài viết</span>
+                    <span>{t('nav.blog')}</span>
                     <ChevronRight size={18} className="text-[#97958F]" />
                   </NavLink>
                 </div>
@@ -136,7 +132,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                     onClick={onClose}
                     className="flex items-center justify-between py-2 text-xl font-heading font-bold text-[#1F1C17] hover:text-[#C5A25D]"
                   >
-                    <span>Liên hệ</span>
+                    <span>{t('nav.contact')}</span>
                     <ChevronRight size={18} className="text-[#97958F]" />
                   </NavLink>
                 </div>
@@ -147,13 +143,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
             <div className="pt-6 border-t border-[#E7E5DF] space-y-4">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-[#97958F]">Ngôn ngữ / Language:</span>
-                <button
-                  type="button"
-                  onClick={toggleLanguage}
-                  className="font-bold uppercase text-[#1F1C17] hover:text-[#C5A25D] px-2 py-1 border border-[#E7E5DF]"
-                >
-                  {i18n.language === 'vi' ? 'EN' : 'VI'}
-                </button>
+                <LangToggle />
               </div>
 
               {isAuthenticated ? (
@@ -163,14 +153,14 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                     onClick={onClose}
                     className="w-full block text-center py-2.5 bg-[#1F1C17] text-[#FEFBF4] text-xs font-condensed uppercase tracking-wider font-bold"
                   >
-                    Tài khoản: {currentUser.name}
+                    {t('nav.account')}: {currentUser.name}
                   </NavLink>
                   <button
                     type="button"
                     onClick={() => { logout(); onClose(); }}
                     className="w-full text-center text-xs text-red-700 underline"
                   >
-                    Đăng xuất
+                    {t('nav.logout')}
                   </button>
                 </div>
               ) : (
@@ -179,7 +169,7 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                   onClick={() => { onClose(); openAuthModal('login'); }}
                   className="w-full py-2.5 border border-[#1F1C17] text-[#1F1C17] text-xs font-condensed uppercase tracking-wider font-bold hover:bg-[#1F1C17] hover:text-[#FEFBF4] transition-colors"
                 >
-                  ĐĂNG NHẬP / ĐĂNG KÝ
+                  {t('auth.submitLogin')} / {t('auth.registerTitle')}
                 </button>
               )}
             </div>

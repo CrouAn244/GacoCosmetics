@@ -9,25 +9,25 @@ export const TestimonialsSection = () => {
 
   const reviews = [
     {
-      name: 'Nguyễn Minh Thư',
-      role: 'Sinh viên ĐH Kinh Tế TP.HCM (Mua lần 2)',
-      review: 'Mình ngồi phòng máy lạnh cả ngày nên môi thường khô ráp và viền môi thâm nhẹ. Thoa một lớp mỏng son Gaco buổi tối, sáng dậy môi mềm mượt và ửng hồng cam đào cực kỳ tự nhiên. Mức giá 79k rất vừa túi tiền sinh viên.',
+      name: t('testimonials.review1Name'),
+      role: t('testimonials.review1Role'),
+      review: t('testimonials.review1Text'),
       rating: 5,
-      date: 'Đã mua hàng - 24/08/2026'
+      date: `${t('testimonials.verifiedBuyer')} - 24/08/2026`
     },
     {
-      name: 'Chị Hoàng Lan Anh',
-      role: 'Mẹ bầu tháng thứ 6, Hà Nội',
-      review: 'Thời gian mang thai mình kiêng tuyệt đối son màu chứa chì. Son dưỡng Gaco 100% thuần chay kiểm nghiệm Quatest không chì giúp mình yên tâm tuyệt đối, dùng xong môi lên màu đào tươi tắn mà không sợ ảnh hưởng đến em bé.',
+      name: t('testimonials.review2Name'),
+      role: t('testimonials.review2Role'),
+      review: t('testimonials.review2Text'),
       rating: 5,
-      date: 'Đã mua hàng - 01/09/2026'
+      date: `${t('testimonials.verifiedBuyer')} - 01/09/2026`
     },
     {
-      name: 'Lê Quỳnh Vy',
-      role: 'Nhân viên văn phòng, Đà Nẵng',
-      review: 'Chất son dạng sáp mịn mượt, thoa lên môi tan nhẹ và không hề bị bóng dính như mỡ động vật. Mùi thơm béo nhẹ rất dễ chịu của dầu dừa già Bến Tre ép lạnh.',
+      name: t('testimonials.review3Name'),
+      role: t('testimonials.review3Role'),
+      review: t('testimonials.review3Text'),
       rating: 5,
-      date: 'Đã mua hàng - 18/08/2026'
+      date: `${t('testimonials.verifiedBuyer')} - 18/08/2026`
     }
   ];
 
@@ -44,15 +44,15 @@ export const TestimonialsSection = () => {
             <div className="border border-[#E7E5DF] bg-[#F4EFE6] overflow-hidden">
               <img
                 src={ASSETS.swatch}
-                alt="Bờ môi ửng hồng tự nhiên sau khi dùng son dưỡng Gaco"
+                alt={t('testimonials.caption')}
                 className="w-full h-auto object-cover hover:scale-102 transition-transform duration-700"
               />
               <div className="p-4 bg-[#FEFBF4] border-t border-[#E7E5DF] flex items-center justify-between text-xs">
                 <span className="font-heading italic text-[#1F1C17]">
-                  Sắc hồng cam đào từ màng gấc tươi tự nhiên
+                  {t('testimonials.caption')}
                 </span>
                 <span className="font-condensed uppercase tracking-wider text-[#7BAD34] font-bold">
-                  100% THUẦN CHAY
+                  {t('testimonials.captionBadge')}
                 </span>
               </div>
             </div>
@@ -62,10 +62,10 @@ export const TestimonialsSection = () => {
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-2">
               <span className="text-xs font-condensed uppercase tracking-[0.25em] text-[#C5A25D] font-bold">
-                TRẢI NGHIỆM THỰC TẾ TỪ KHÁCH HÀNG
+                {t('testimonials.badge')}
               </span>
               <h2 className="text-3xl sm:text-4xl font-heading font-normal text-[#1F1C17]">
-                Hơn 5.000+ bờ môi tìm lại sắc hồng nguyên bản
+                {t('testimonials.title')}
               </h2>
             </div>
 

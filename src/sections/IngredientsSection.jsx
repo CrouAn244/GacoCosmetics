@@ -5,10 +5,14 @@ import { ArrowRight, Sparkles, MapPin, FlaskConical, Check } from 'lucide-react'
 import { ACTIVE_INGREDIENTS } from '../utils/constants';
 
 export const IngredientsSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEn = (i18n.language || 'vi').toLowerCase().startsWith('en');
   const [activeTab, setActiveTab] = useState(0);
 
   const selectedIng = ACTIVE_INGREDIENTS[activeTab];
+  const ingName = isEn ? (selectedIng.nameEn || selectedIng.name) : selectedIng.name;
+  const ingSource = isEn ? selectedIng.sourceEn : selectedIng.sourceVi;
+  const ingRole = isEn ? selectedIng.roleEn : selectedIng.roleVi;
 
   return (
     <section className="py-24 bg-[#F5EFE8] dark:bg-[#161413] border-b border-[#E8E2D9] dark:border-[#2E2925]">
@@ -18,10 +22,10 @@ export const IngredientsSection = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-[#E8E2D9] dark:border-[#2E2925]">
           <div>
             <span className="text-[11px] uppercase tracking-[0.25em] text-[#A83B1B] font-bold">
-              Minh Bạch Nguồn Gốc • Khoa Học Thực Vật
+              {t('ingredientsSection.badge')}
             </span>
             <h2 className="text-3xl sm:text-4xl font-heading font-normal text-[#1A1615] dark:text-[#F3EFEA] mt-2">
-              Nguyên Liệu Đặc Hữu Từ Đất Việt
+              {t('ingredientsSection.title')}
             </h2>
           </div>
 
@@ -38,7 +42,7 @@ export const IngredientsSection = () => {
                     : 'text-[#665E57] dark:text-[#A39A91] hover:text-[#1A1615]'
                 }`}
               >
-                {ing.name}
+                {isEn ? (ing.nameEn || ing.name) : ing.name}
               </button>
             ))}
           </div>
@@ -52,11 +56,11 @@ export const IngredientsSection = () => {
             <div className="relative overflow-hidden shadow-editorial border border-[#E8E2D9] dark:border-[#2E2925] bg-[#FAF7F2] aspect-square">
               <img
                 src={selectedIng.image}
-                alt={selectedIng.name}
+                alt={ingName}
                 className="w-full h-full object-cover"
               />
               <div className="absolute top-4 left-4 bg-[#1A1615]/80 text-[#FAF7F2] px-3.5 py-1.5 text-[11px] uppercase tracking-widest font-semibold backdrop-blur-xs">
-                {selectedIng.tag}
+                {isEn ? (selectedIng.tagEn || selectedIng.tag) : (selectedIng.tagVi || selectedIng.tag)}
               </div>
             </div>
           </div>
@@ -68,27 +72,27 @@ export const IngredientsSection = () => {
                 INCI: {selectedIng.scientificName}
               </p>
               <h3 className="text-3xl font-heading font-medium text-[#1A1615] dark:text-[#F3EFEA] mt-1">
-                {selectedIng.name}
+                {ingName}
               </h3>
             </div>
 
             <div className="flex items-center gap-2 text-xs font-semibold text-[#A83B1B]">
               <MapPin size={15} />
-              <span>{selectedIng.sourceVi}</span>
+              <span>{ingSource}</span>
             </div>
 
             <p className="text-sm sm:text-base text-[#665E57] dark:text-[#A39A91] leading-relaxed">
-              {selectedIng.roleVi}
+              {ingRole}
             </p>
 
             <div className="p-4 bg-[#FAF7F2] dark:bg-[#1C1918] border border-[#E8E2D9] dark:border-[#2E2925] space-y-2">
               <div className="flex items-center justify-between text-xs border-b border-[#E8E2D9] dark:border-[#2E2925] pb-2">
-                <span className="text-[#665E57] dark:text-[#A39A91]">Hoạt chất chủ đạo:</span>
-                <span className="font-bold text-[#1A1615] dark:text-[#F3EFEA]">{selectedIng.keyCompounds}</span>
+                <span className="text-[#665E57] dark:text-[#A39A91]">{t('ingredientsSection.coreCompound')}</span>
+                <span className="font-bold text-[#1A1615] dark:text-[#F3EFEA]">{isEn ? (selectedIng.keyCompoundsEn || selectedIng.keyCompounds) : (selectedIng.keyCompoundsVi || selectedIng.keyCompounds)}</span>
               </div>
               <div className="flex items-center justify-between text-xs pt-1">
-                <span className="text-[#665E57] dark:text-[#A39A91]">Hàm lượng dược tính:</span>
-                <span className="font-bold text-[#A83B1B]">{selectedIng.ratio}</span>
+                <span className="text-[#665E57] dark:text-[#A39A91]">{t('ingredientsSection.potencyRatio')}</span>
+                <span className="font-bold text-[#A83B1B]">{isEn ? (selectedIng.ratioEn || selectedIng.ratio) : (selectedIng.ratioVi || selectedIng.ratio)}</span>
               </div>
             </div>
 
@@ -97,7 +101,7 @@ export const IngredientsSection = () => {
                 to="/ingredients"
                 className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-bold text-[#1A1615] dark:text-[#F3EFEA] hover:text-[#A83B1B] transition-colors border-b border-[#1A1615] dark:border-[#F3EFEA] pb-1"
               >
-                <span>XEM CHI TIẾT BẢNG THÀNH PHẦN KHOA HỌC</span>
+                <span>{t('ingredientsSection.viewInci')}</span>
                 <ArrowRight size={14} />
               </Link>
             </div>

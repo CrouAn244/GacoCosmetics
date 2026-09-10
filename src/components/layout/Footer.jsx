@@ -15,28 +15,28 @@ export const Footer = () => {
         <div className="pb-16 mb-16 border-b border-[#2E2925] flex flex-col lg:flex-row lg:items-center justify-between gap-8">
           <div>
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#A83B1B] font-bold">
-              Bản Tin Nông Sản Thuần Chay
+              {t('footer.newsletterTag')}
             </span>
             <h3 className="text-2xl sm:text-3xl font-heading font-medium mt-1">
-              Đồng hành cùng hành trình mỹ phẩm thuần chay Việt
+              {t('footer.newsletterTitle')}
             </h3>
             <p className="text-xs text-[#A39A91] mt-2">
-              Nhận voucher 149k chào mừng và cẩm nang chăm sóc môi định kỳ từ chuyên gia.
+              {t('footer.newsletterDesc')}
             </p>
           </div>
 
-          <form onSubmit={(e) => { e.preventDefault(); alert('Cảm ơn bạn đã đăng ký nhận bản tin Gaco!'); }} className="flex w-full max-w-md gap-2">
+          <form onSubmit={(e) => { e.preventDefault(); alert(t('footer.newsletterSuccess')); }} className="flex w-full max-w-md gap-2">
             <input
               type="email"
               required
-              placeholder="Nhập địa chỉ email của bạn..."
+              placeholder={t('footer.newsletterPlaceholder')}
               className="flex-1 px-4 py-3 bg-[#1C1918] border border-[#2E2925] text-xs text-[#F3EFEA] placeholder-[#665E57] focus:border-[#A83B1B] outline-none"
             />
             <button
               type="submit"
               className="px-6 py-3 bg-[#A83B1B] hover:bg-[#8C2E13] text-[#FAF7F2] text-xs uppercase tracking-widest font-semibold transition-colors shrink-0"
             >
-              ĐĂNG KÝ
+              {t('footer.newsletterBtn')}
             </button>
           </form>
         </div>
@@ -56,7 +56,7 @@ export const Footer = () => {
             </div>
 
             <p className="text-xs text-[#A39A91] leading-relaxed">
-              Mỹ phẩm 100% thuần chay từ nông sản bản địa Việt Nam. Sứ mệnh nâng tầm giá trị trái gấc và dừa Bến Tre thành những giải pháp chăm sóc sắc đẹp lành tính, tôn vinh thiên nhiên và con người đất Việt.
+              {t('footer.desc')}
             </p>
 
             <div className="pt-2 flex items-center gap-4 text-xs font-semibold">
@@ -71,26 +71,26 @@ export const Footer = () => {
           {/* Col 2: Navigation Directory */}
           <div>
             <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-[#FAF7F2] mb-5">
-              DANH MỤC
+              {t('nav.menu')}
             </h4>
             <ul className="space-y-3 text-xs text-[#A39A91]">
               <li>
-                <Link to="/" className="hover:text-[#F3EFEA] transition-colors">Trang Chủ</Link>
+                <Link to="/" className="hover:text-[#F3EFEA] transition-colors">{t('nav.home')}</Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-[#F3EFEA] transition-colors">Câu Chuyện Thương Hiệu (SOSTAC)</Link>
+                <Link to="/about" className="hover:text-[#F3EFEA] transition-colors">{t('nav.about')}</Link>
               </li>
               <li>
-                <Link to="/product" className="hover:text-[#F3EFEA] transition-colors">Son Dưỡng Gấc &amp; Dừa Bến Tre (79.000đ)</Link>
+                <Link to="/product" className="hover:text-[#F3EFEA] transition-colors">{t('nav.product')}</Link>
               </li>
               <li>
-                <Link to="/ingredients" className="hover:text-[#F3EFEA] transition-colors">Bản Đồ Nguyên Liệu Bản Địa</Link>
+                <Link to="/ingredients" className="hover:text-[#F3EFEA] transition-colors">{t('nav.ingredients')}</Link>
               </li>
               <li>
-                <Link to="/blog" className="hover:text-[#F3EFEA] transition-colors">Bài Viết &amp; Cẩm Nang Chăm Sóc Môi</Link>
+                <Link to="/blog" className="hover:text-[#F3EFEA] transition-colors">{t('nav.blog')}</Link>
               </li>
               <li>
-                <Link to="/account" className="hover:text-[#F3EFEA] transition-colors">Tài Khoản Gaco Member Club</Link>
+                <Link to="/account" className="hover:text-[#F3EFEA] transition-colors">{t('nav.account')}</Link>
               </li>
             </ul>
           </div>
@@ -98,12 +98,12 @@ export const Footer = () => {
           {/* Col 3: Direct Contact */}
           <div>
             <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-[#FAF7F2] mb-5">
-              THÔNG TIN LIÊN HỆ
+              {t('footer.contactInfo')}
             </h4>
             <ul className="space-y-3 text-xs text-[#A39A91]">
               <li className="flex items-start gap-2.5">
                 <MapPin size={15} className="text-[#A83B1B] mt-0.5 shrink-0" />
-                <span>123 Đường Nông Nghiệp Xanh, Q.1, TP. Hồ Chí Minh</span>
+                <span>{t('footer.address')}</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone size={15} className="text-[#A83B1B] shrink-0" />
@@ -115,7 +115,7 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-2.5">
                 <Clock size={15} className="text-[#A83B1B] shrink-0" />
-                <span>Hỗ trợ trực tuyến: Phản hồi &lt; 2 phút</span>
+                <span>{t('footer.hours')}</span>
               </li>
             </ul>
           </div>
@@ -123,16 +123,16 @@ export const Footer = () => {
           {/* Col 4: Certifications & Quatest */}
           <div>
             <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-[#FAF7F2] mb-5">
-              CHỨNG NHẬN QUỐC TẾ
+              {t('trust.badge')}
             </h4>
             <div className="space-y-3 text-xs text-[#A39A91]">
               <div className="p-3 bg-[#1C1918] border border-[#2E2925] space-y-1">
-                <p className="font-bold text-[#FAF7F2]">Leaping Bunny &amp; The Vegan Society</p>
-                <p className="text-[11px] text-[#A39A91]">Không thử nghiệm trên động vật và 100% thuần thực vật</p>
+                <p className="font-bold text-[#FAF7F2]">The Vegan Society &amp; Cruelty-Free</p>
+                <p className="text-[11px] text-[#A39A91]">{t('trust.card1Desc')}</p>
               </div>
               <div className="p-3 bg-[#1C1918] border border-[#2E2925] space-y-1">
-                <p className="font-bold text-[#FAF7F2]">Kiểm Định Trung Tâm Quatest</p>
-                <p className="text-[11px] text-[#A39A91]">0% Chì • An toàn tuyệt đối cho mẹ bầu suốt thai kỳ</p>
+                <p className="font-bold text-[#FAF7F2]">QUATEST 3 Certification</p>
+                <p className="text-[11px] text-[#A39A91]">{t('trust.card3Desc')}</p>
               </div>
             </div>
           </div>
@@ -141,13 +141,9 @@ export const Footer = () => {
 
         {/* Bottom Legal Line */}
         <div className="pt-8 border-t border-[#2E2925] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#665E57]">
-          <p>© 2026 GACO VIETNAM. Bản quyền thuộc về đồ án Marketing Số (SOSTAC Framework).</p>
+          <p>{t('footer.copyright')}</p>
           <div className="flex items-center gap-6 uppercase tracking-widest text-[#A39A91]">
-            <span>100% Thuần Chay</span>
-            <span>•</span>
-            <span>Nông Sản Bản Địa</span>
-            <span>•</span>
-            <span>0% Chì</span>
+            <span>{t('footer.veganPledge')}</span>
           </div>
         </div>
 

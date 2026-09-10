@@ -44,28 +44,44 @@ export const ACTIVE_INGREDIENTS = [
   {
     id: 'gac-aril',
     name: 'Dầu Gấc Ép Lạnh',
+    nameVi: 'Dầu Gấc Ép Lạnh',
+    nameEn: 'Cold-Pressed Gac Oil',
     scientificName: 'Momordica Cochinchinensis Oil',
     sourceVi: 'Thu hoạch từ gấc chín cây tại vùng đồng bằng châu thổ',
     sourceEn: 'Handpicked ripe gac fruit from Vietnamese farms',
     keyCompounds: 'Lycopene & Beta-Carotene',
+    keyCompoundsVi: 'Lycopene & Beta-Carotene',
+    keyCompoundsEn: 'Lycopene & Beta-Carotene',
     ratio: 'Lycopene cao gấp 70 lần cà chua',
+    ratioVi: 'Lycopene cao gấp 70 lần cà chua',
+    ratioEn: 'Lycopene 70x higher than tomato',
     roleVi: 'Chất chống oxy hóa tự nhiên mạnh mẽ giúp trung hòa các gốc tự do, kích thích sản sinh collagen, làm mờ sắc tố thâm sạm và hồi phục bờ môi hồng hào tự nhiên.',
     roleEn: 'Exceptional antioxidant that accelerates cellular renewal, diminishes discoloration, and restores natural lip radiance.',
     image: gacImg,
-    tag: 'Chống thâm & Phục hồi'
+    tag: 'Chống thâm & Phục hồi',
+    tagVi: 'Chống thâm & Phục hồi',
+    tagEn: 'Discoloration Relief & Restorative'
   },
   {
     id: 'coconut-oil',
     name: 'Dầu Dừa Già Bến Tre',
+    nameVi: 'Dầu Dừa Già Bến Tre',
+    nameEn: 'Aged Ben Tre Coconut Oil',
     scientificName: 'Cocos Nucifera (Coconut) Oil',
     sourceVi: 'Dừa già tuyển chọn tại thủ phủ dừa Bến Tre',
     sourceEn: 'Aged coconuts from Ben Tre Province',
     keyCompounds: 'Lauric Acid & Vitamin E tự nhiên',
+    keyCompoundsVi: 'Lauric Acid & Vitamin E tự nhiên',
+    keyCompoundsEn: 'Lauric Acid & Natural Vitamin E',
     ratio: 'Chiếm gần 50% cấu trúc acid béo',
+    ratioVi: 'Chiếm gần 50% cấu trúc acid béo',
+    ratioEn: 'Accounts for ~50% fatty acid profile',
     roleVi: 'Chuỗi axit béo trung bình thẩm thấu sâu, củng cố màng lipid tự nhiên, kháng khuẩn và bảo vệ môi khỏi nứt nẻ trong thời tiết hanh khô hoặc phòng điều hòa.',
     roleEn: 'Penetrates deeply to nourish delicate lip tissue, forming a protective moisture seal against harsh environmental stressors.',
     image: coconutImg,
-    tag: 'Dưỡng ẩm chuyên sâu'
+    tag: 'Dưỡng ẩm chuyên sâu',
+    tagVi: 'Dưỡng ẩm chuyên sâu',
+    tagEn: 'Deep Moisture Barrier'
   }
 ];
 

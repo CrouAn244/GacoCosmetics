@@ -5,7 +5,8 @@ import { useAuth } from '../../hooks/useAuth';
 import { User, LogOut, Award, Gift, ChevronDown } from 'lucide-react';
 
 export const UserMenu = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEn = (i18n.language || 'vi').toLowerCase().startsWith('en');
   const { currentUser, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
@@ -52,7 +53,7 @@ export const UserMenu = () => {
             <p className="text-[11px] text-[#97958F] truncate lowercase tracking-normal">{currentUser.email}</p>
             <div className="mt-2 flex items-center gap-1.5 text-[11px] text-[#C5A25D] font-bold">
               <Award size={13} />
-              <span>Gaco Green Circle ({currentUser.points || 200} điểm)</span>
+              <span>Gaco Green Circle ({currentUser.points || 200} {isEn ? 'pts' : 'điểm'})</span>
             </div>
           </div>
 
@@ -62,7 +63,7 @@ export const UserMenu = () => {
             className="flex items-center gap-2.5 px-4 py-2.5 text-[#1F1C17] hover:bg-[#F4EFE6] transition-colors"
           >
             <User size={14} />
-            <span>TÀI KHOẢN CỦA TÔI</span>
+            <span>{isEn ? 'MY ACCOUNT' : 'TÀI KHOẢN CỦA TÔI'}</span>
           </Link>
 
           <Link
@@ -71,7 +72,7 @@ export const UserMenu = () => {
             className="flex items-center gap-2.5 px-4 py-2.5 text-[#1F1C17] hover:bg-[#F4EFE6] transition-colors"
           >
             <Gift size={14} />
-            <span>VOUCHER ƯU ĐÃI ({(currentUser.vouchers || []).length})</span>
+            <span>{isEn ? `EXCLUSIVE VOUCHERS (${(currentUser.vouchers || []).length})` : `VOUCHER ƯU ĐÃI (${(currentUser.vouchers || []).length})`}</span>
           </Link>
 
           <div className="pt-1 mt-1 border-t border-[#E7E5DF]">
@@ -85,7 +86,7 @@ export const UserMenu = () => {
               className="w-full flex items-center gap-2.5 px-4 py-2.5 text-[#BE2F31] hover:bg-[#BE2F31]/10 transition-colors text-left font-bold"
             >
               <LogOut size={14} />
-              <span>ĐĂNG XUẤT</span>
+              <span>{t('auth.logout')}</span>
             </button>
           </div>
         </div>

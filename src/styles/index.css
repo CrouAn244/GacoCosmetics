@@ -148,6 +148,7 @@ html.lenis, html.lenis body {
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 4px;
 }
 ::-webkit-scrollbar-track {
   background: #F4EFE6;
@@ -155,3 +156,13 @@ html.lenis, html.lenis body {
 ::-webkit-scrollbar-thumb {
   background: #C5A25D;
 }
+
+/* Hide scrollbar for mobile horizontal nav */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

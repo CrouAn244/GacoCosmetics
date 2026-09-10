@@ -6,13 +6,14 @@ import { SEO } from '../utils/seo';
 import { SOCIAL_LINKS } from '../utils/constants';
 
 export const ContactPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEn = (i18n.language || 'vi').toLowerCase().startsWith('en');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: '',
     email: '',
     phone: '',
-    topic: 'Tư vấn sản phẩm son dưỡng gấc',
+    topic: isEn ? 'Gac balm advice' : 'Tư vấn sản phẩm son dưỡng gấc',
     message: ''
   });
 
@@ -31,31 +32,33 @@ export const ContactPage = () => {
   return (
     <>
       <SEO
-        title="Liên Hệ & Hỗ Trợ Khách Hàng – Gaco Vietnam"
-        description="Liên hệ đội ngũ Gaco Cosmetics qua Messenger, TikTok, Facebook hoặc gửi form tư vấn son dưỡng hữu cơ. Cam kết phản hồi dưới 2 phút."
+        title={isEn ? "Contact & Customer Care – Gaco Vietnam" : "Liên Hệ & Hỗ Trợ Khách Hàng – Gaco Vietnam"}
+        description={isEn
+          ? "Contact Gaco Cosmetics team via Messenger, TikTok, Facebook, or submit an inquiry form. Response guaranteed under 2 minutes."
+          : "Liên hệ đội ngũ Gaco Cosmetics qua Messenger, TikTok, Facebook hoặc gửi form tư vấn son dưỡng hữu cơ. Cam kết phản hồi dưới 2 phút."}
       />
 
-      <div className="pt-28 pb-24 bg-[#FEFBF4]">
+      <div className="pt-[125px] sm:pt-[135px] pb-24 bg-[#FEFBF4]">
         
         {/* Breadcrumbs - Cocoon Style */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-6 border-b border-[#E7E5DF]">
-          <div className="flex items-center gap-2 text-xs font-condensed tracking-wider uppercase text-[#97958F]">
-            <Link to="/" className="hover:text-[#1F1C17] transition-colors">TRANG CHỦ</Link>
-            <ChevronRight size={12} />
-            <span className="text-[#1F1C17] font-semibold">LIÊN HỆ</span>
+          <div className="flex items-center gap-2 text-xs font-condensed tracking-wider uppercase text-[#97958F] overflow-x-auto whitespace-nowrap no-scrollbar">
+            <Link to="/" className="hover:text-[#1F1C17] transition-colors shrink-0">{t('breadcrumbs.home')}</Link>
+            <ChevronRight size={12} className="shrink-0" />
+            <span className="text-[#1F1C17] font-semibold shrink-0">{t('breadcrumbs.contact')}</span>
           </div>
         </div>
 
         {/* Hero Title */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 pb-12">
           <span className="text-xs font-condensed uppercase tracking-[0.25em] text-[#C5A25D] font-bold">
-            KẾT NỐI CÙNG GACO VIETNAM
+            {t('contactPage.tagline')}
           </span>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-medium text-[#1F1C17] tracking-tight mt-4 mb-6 leading-tight">
-            Liên Hệ Với Chúng Tôi
+            {t('contactPage.title')}
           </h1>
           <p className="text-base sm:text-lg text-[#666055] font-light leading-relaxed max-w-2xl mx-auto">
-            Mọi thắc mắc về thành phần son gấc, quy trình ép lạnh dừa Bến Tre hay hợp tác đại lý, chúng tôi luôn sẵn lòng lắng nghe và giải đáp bạn.
+            {t('contactPage.subtitle')}
           </p>
         </section>
 
@@ -68,10 +71,10 @@ export const ContactPage = () => {
               <div className="p-8 border border-[#E7E5DF] bg-[#FEFBF4] space-y-6">
                 <div className="border-b border-[#E7E5DF] pb-4">
                   <span className="text-xs font-condensed uppercase tracking-[0.18em] text-[#C5A25D] font-bold">
-                    TRUNG TÂM CHĂM SÓC KHÁCH HÀNG
+                    {isEn ? 'CUSTOMER CARE CENTER' : 'TRUNG TÂM CHĂM SÓC KHÁCH HÀNG'}
                   </span>
                   <h3 className="text-xl font-heading font-medium text-[#1F1C17] mt-1">
-                    Thông Tin Trực Tiếp
+                    {isEn ? 'Direct Contact Information' : 'Thông Tin Trực Tiếp'}
                   </h3>
                 </div>
 
@@ -79,7 +82,7 @@ export const ContactPage = () => {
                   <li className="flex items-start gap-3.5">
                     <MapPin size={18} className="text-[#C5A25D] mt-0.5 shrink-0" />
                     <div>
-                      <p className="font-heading font-semibold text-[#1F1C17]">Trụ sở chính &amp; Phòng trưng bày</p>
+                      <p className="font-heading font-semibold text-[#1F1C17]">{isEn ? 'Headquarters & Showroom' : 'Trụ sở chính & Phòng trưng bày'}</p>
                       <p className="text-xs text-[#97958F] mt-0.5">123 Đường Nông Nghiệp Xanh, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh</p>
                     </div>
                   </li>
@@ -87,15 +90,15 @@ export const ContactPage = () => {
                   <li className="flex items-start gap-3.5">
                     <Phone size={18} className="text-[#C5A25D] mt-0.5 shrink-0" />
                     <div>
-                      <p className="font-heading font-semibold text-[#1F1C17]">Hotline hỗ trợ (8:00 - 21:00)</p>
-                      <p className="text-xs text-[#97958F] mt-0.5">{SOCIAL_LINKS.hotline} (Miễn phí cuộc gọi)</p>
+                      <p className="font-heading font-semibold text-[#1F1C17]">{isEn ? 'Support Hotline (8:00 - 21:00)' : 'Hotline hỗ trợ (8:00 - 21:00)'}</p>
+                      <p className="text-xs text-[#97958F] mt-0.5">{SOCIAL_LINKS.hotline} {isEn ? '(Toll-free call)' : '(Miễn phí cuộc gọi)'}</p>
                     </div>
                   </li>
 
                   <li className="flex items-start gap-3.5">
                     <Mail size={18} className="text-[#C5A25D] mt-0.5 shrink-0" />
                     <div>
-                      <p className="font-heading font-semibold text-[#1F1C17]">Email giải đáp thắc mắc</p>
+                      <p className="font-heading font-semibold text-[#1F1C17]">{isEn ? 'Inquiry Email' : 'Email giải đáp thắc mắc'}</p>
                       <p className="text-xs text-[#97958F] mt-0.5">{SOCIAL_LINKS.email}</p>
                     </div>
                   </li>
@@ -103,8 +106,8 @@ export const ContactPage = () => {
                   <li className="flex items-start gap-3.5">
                     <Clock size={18} className="text-[#C5A25D] mt-0.5 shrink-0" />
                     <div>
-                      <p className="font-heading font-semibold text-[#1F1C17]">Thời gian phản hồi cam kết (SOSTAC)</p>
-                      <p className="text-xs text-[#7BAD34] font-medium mt-0.5">Phản hồi &lt; 2 phút trong giờ hành chính</p>
+                      <p className="font-heading font-semibold text-[#1F1C17]">{isEn ? 'Committed Response Time (SOSTAC)' : 'Thời gian phản hồi cam kết (SOSTAC)'}</p>
+                      <p className="text-xs text-[#7BAD34] font-medium mt-0.5">{isEn ? 'Response < 2 minutes in business hours' : 'Phản hồi < 2 phút trong giờ hành chính'}</p>
                     </div>
                   </li>
                 </ul>
@@ -112,7 +115,7 @@ export const ContactPage = () => {
                 {/* Social Channels */}
                 <div className="pt-4 border-t border-[#E7E5DF] space-y-3">
                   <p className="text-xs font-condensed uppercase tracking-[0.18em] text-[#1F1C17] font-bold">
-                    KÊNH MẠNG XÃ HỘI TRỰC TUYẾN:
+                    {isEn ? 'ONLINE SOCIAL CHANNELS:' : 'KÊNH MẠNG XÃ HỘI TRỰC TUYẾN:'}
                   </p>
 
                   <a
@@ -123,7 +126,7 @@ export const ContactPage = () => {
                   >
                     <span className="flex items-center gap-2">
                       <MessageCircle size={15} />
-                      <span>Chat Messenger Tư Vấn Tức Thì</span>
+                      <span>{isEn ? 'Messenger Instant Advice' : 'Chat Messenger Tư Vấn Tức Thì'}</span>
                     </span>
                     <ArrowRight size={14} />
                   </a>
@@ -161,10 +164,12 @@ export const ContactPage = () => {
                       <CheckCircle2 size={28} />
                     </div>
                     <h3 className="text-2xl font-heading font-medium text-[#1F1C17]">
-                      Gửi Thông Tin Thành Công!
+                      {isEn ? 'Information Sent Successfully!' : 'Gửi Thông Tin Thành Công!'}
                     </h3>
                     <p className="text-xs sm:text-sm text-[#666055] font-light max-w-md mx-auto leading-relaxed">
-                      Cảm ơn <strong>{form.name}</strong> đã liên hệ với Gaco Cosmetics. Chuyên viên chăm sóc sẽ liên lạc với bạn qua số điện thoại <strong>{form.phone}</strong> trong vòng 2 phút.
+                      {isEn
+                        ? `Thank you ${form.name} for reaching out to Gaco Cosmetics. A care specialist will contact you at ${form.phone} within 2 minutes.`
+                        : `Cảm ơn ${form.name} đã liên hệ với Gaco Cosmetics. Chuyên viên chăm sóc sẽ liên lạc với bạn qua số điện thoại ${form.phone} trong vòng 2 phút.`}
                     </p>
                     <div className="pt-4">
                       <button
@@ -172,7 +177,7 @@ export const ContactPage = () => {
                         onClick={() => setFormSubmitted(false)}
                         className="px-6 py-3 button-cocoon-dark text-xs tracking-wider font-bold"
                       >
-                        GỬI TIN NHẮN KHÁC
+                        {isEn ? 'SEND ANOTHER MESSAGE' : 'GỬI TIN NHẮN KHÁC'}
                       </button>
                     </div>
                   </div>
@@ -180,31 +185,31 @@ export const ContactPage = () => {
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="border-b border-[#E7E5DF] pb-4 mb-4">
                       <span className="text-xs font-condensed uppercase tracking-[0.18em] text-[#C5A25D] font-bold">
-                        HỖ TRỢ TRỰC TUYẾN
+                        {isEn ? 'ONLINE SUPPORT' : 'HỖ TRỢ TRỰC TUYẾN'}
                       </span>
                       <h3 className="text-xl font-heading font-medium text-[#1F1C17] mt-1">
-                        Gửi Yêu Cầu Cho Đội Ngũ Gaco
+                        {t('contactPage.formTitle')}
                       </h3>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] mb-1.5">
-                          Họ và tên *
+                          {t('contactPage.nameLabel')} *
                         </label>
                         <input
                           type="text"
                           required
                           value={form.name}
                           onChange={(e) => setForm({ ...form, name: e.target.value })}
-                          placeholder="Ví dụ: Nguyễn Phương Anh"
+                          placeholder={isEn ? "e.g. Jenny Nguyen" : "Ví dụ: Nguyễn Phương Anh"}
                           className="w-full px-4 py-2.5 border border-[#E7E5DF] bg-[#FEFBF4] text-xs sm:text-sm text-[#1F1C17] focus:border-[#C5A25D] outline-none transition-colors"
                         />
                       </div>
 
                       <div>
                         <label className="block text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] mb-1.5">
-                          Số điện thoại *
+                          {t('contactPage.phoneLabel')} *
                         </label>
                         <input
                           type="tel"
@@ -219,7 +224,7 @@ export const ContactPage = () => {
 
                     <div>
                       <label className="block text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] mb-1.5">
-                        Địa chỉ Email
+                        {t('contactPage.emailLabel')}
                       </label>
                       <input
                         type="email"
@@ -232,30 +237,30 @@ export const ContactPage = () => {
 
                     <div>
                       <label className="block text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] mb-1.5">
-                        Chủ đề bạn quan tâm
+                        {t('contactPage.topicLabel')}
                       </label>
                       <select
                         value={form.topic}
                         onChange={(e) => setForm({ ...form, topic: e.target.value })}
                         className="w-full px-4 py-2.5 border border-[#E7E5DF] bg-[#FEFBF4] text-xs sm:text-sm text-[#1F1C17] focus:border-[#C5A25D] outline-none transition-colors cursor-pointer"
                       >
-                        <option>Tư vấn chọn son dưỡng phù hợp</option>
-                        <option>Đặt mua Combo 2 Thỏi Tiết Kiệm 149.000đ</option>
-                        <option>Hỏi về độ an toàn 0% chì cho Mẹ Bầu</option>
-                        <option>Đăng ký Đại lý / Điểm phân phối sinh viên</option>
-                        <option>Khác</option>
+                        <option>{isEn ? 'Advice on choosing the right lip balm' : 'Tư vấn chọn son dưỡng phù hợp'}</option>
+                        <option>{isEn ? 'Order Saving Duo Combo 149,000đ' : 'Đặt mua Combo 2 Thỏi Tiết Kiệm 149.000đ'}</option>
+                        <option>{isEn ? 'Inquire about 0% lead safety for Expecting Mothers' : 'Hỏi về độ an toàn 0% chì cho Mẹ Bầu'}</option>
+                        <option>{isEn ? 'Register as Campus Agent / Retail Partner' : 'Đăng ký Đại lý / Điểm phân phối sinh viên'}</option>
+                        <option>{isEn ? 'Other' : 'Khác'}</option>
                       </select>
                     </div>
 
                     <div>
                       <label className="block text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] mb-1.5">
-                        Ghi chú nội dung
+                        {t('contactPage.messageLabel')}
                       </label>
                       <textarea
                         rows={4}
                         value={form.message}
                         onChange={(e) => setForm({ ...form, message: e.target.value })}
-                        placeholder="Mô tả tình trạng môi của bạn hoặc địa chỉ nhận hàng..."
+                        placeholder={isEn ? "Describe your lip conditions or delivery notes..." : "Mô tả tình trạng môi của bạn hoặc địa chỉ nhận hàng..."}
                         className="w-full px-4 py-2.5 border border-[#E7E5DF] bg-[#FEFBF4] text-xs sm:text-sm text-[#1F1C17] focus:border-[#C5A25D] outline-none transition-colors"
                       />
                     </div>
@@ -265,7 +270,7 @@ export const ContactPage = () => {
                       className="w-full py-3.5 button-cocoon-dark text-xs tracking-[0.2em] font-bold flex items-center justify-center gap-2 mt-2"
                     >
                       <Send size={14} />
-                      <span>GỬI THÔNG TIN CHO GACO (PHẢN HỒI &lt; 2 PHÚT)</span>
+                      <span>{isEn ? 'SEND INFORMATION TO GACO (RESPONSE < 2 MINS)' : 'GỬI THÔNG TIN CHO GACO (PHẢN HỒI < 2 PHÚT)'}</span>
                     </button>
                   </form>
                 )}
@@ -280,17 +285,19 @@ export const ContactPage = () => {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="p-8 sm:p-12 border border-[#E7E5DF] bg-[#F4EFE6] text-center space-y-3">
             <span className="text-xs font-condensed uppercase tracking-[0.2em] text-[#C5A25D] font-bold">
-              ĐIỂM TRẢI NGHIỆM TRỰC TIẾP
+              {isEn ? 'PHYSICAL EXPERIENCE' : 'ĐIỂM TRẢI NGHIỆM TRỰC TIẾP'}
             </span>
             <h3 className="text-2xl font-heading font-medium text-[#1F1C17]">
-              Không Gian Trải Nghiệm Son Dưỡng Gaco
+              {isEn ? 'Gaco Lip Balm Experience Space' : 'Không Gian Trải Nghiệm Son Dưỡng Gaco'}
             </h3>
             <p className="text-xs sm:text-sm text-[#666055] font-light max-w-lg mx-auto leading-relaxed">
-              Mời bạn ghé thăm quầy trải nghiệm tại số 123 Đường Nông Nghiệp Xanh, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh để thử chất son tự nhiên và nhận mẫu dùng thử.
+              {isEn
+                ? 'Visit our experience counter at 123 Green Agriculture St, Ben Nghe Ward, District 1, HCMC to sample our natural balm and receive a complimentary tester.'
+                : 'Mời bạn ghé thăm quầy trải nghiệm tại số 123 Đường Nông Nghiệp Xanh, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh để thử chất son tự nhiên và nhận mẫu dùng thử.'}
             </p>
             <div className="pt-2">
               <span className="inline-block px-3 py-1 bg-[#FEFBF4] border border-[#E7E5DF] text-xs font-condensed uppercase tracking-wider text-[#7BAD34] font-bold">
-                ● MỞ CỬA: THỨ HAI – CHỦ NHẬT (08:00 – 21:00)
+                {isEn ? '● OPEN: MONDAY – SUNDAY (08:00 – 21:00)' : '● MỞ CỬA: THỨ HAI – CHỦ NHẬT (08:00 – 21:00)'}
               </span>
             </div>
           </div>

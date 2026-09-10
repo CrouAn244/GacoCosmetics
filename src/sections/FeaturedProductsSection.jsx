@@ -1,45 +1,49 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingBag, Gift, Sparkles } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { ASSETS } from '../utils/constants';
 
 export const FeaturedProductsSection = () => {
+  const { t, i18n } = useTranslation();
+  const isEn = (i18n.language || 'vi').toLowerCase().startsWith('en');
+
   const products = [
     {
       id: 'gaco-single',
-      name: 'Son Dưỡng Gấc & Dầu Dừa Bến Tre (5g)',
-      subtitle: 'Màng gấc tươi ép lạnh • Phục hồi sắc hồng tự nhiên • 0% Chì Quatest 3',
-      price: '79.000 đ',
+      name: t('featured.singleName'),
+      subtitle: t('featured.singleSubtitle'),
+      price: t('featured.singlePrice'),
       image: ASSETS.hero,
-      badge: 'THỎI ĐƠN NGUYÊN BẢN',
-      stock: '● Sẵn sàng giao ngay trong 24h',
-      tag: 'Phù hợp dùng thử & đi học hàng ngày'
+      badge: t('featured.singleBadge'),
+      stock: t('featured.singleStock'),
+      tag: t('featured.singleTag')
     },
     {
       id: 'gaco-combo',
-      name: 'Hộp Quà Gaco Botanical Gift Set (2 Thỏi)',
-      subtitle: 'Tặng túi vải Canvas dệt mộc in logo Gaco + Thiệp viết tay tri ân nông hộ Bến Tre',
-      price: '149.000 đ',
-      oldPrice: '158.000 đ',
+      name: t('featured.comboName'),
+      subtitle: t('featured.comboSubtitle'),
+      price: t('featured.comboPrice'),
+      oldPrice: t('featured.comboOldPrice'),
       image: ASSETS.swatch,
-      badge: 'BỘ QUÀ TẶNG BẢN ĐỊA',
-      stock: '● Miễn phí giao hàng toàn quốc',
-      tag: 'Ưu đãi sinh viên & quà tặng mẹ bầu'
+      badge: t('featured.comboBadge'),
+      stock: t('featured.comboStock'),
+      tag: t('featured.comboTag')
     }
   ];
 
   return (
     <section className="py-20 bg-[#FEFBF4] border-b border-[#E7E5DF]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-11">
+      <div className="max-w-7xl mx-auto px-5">
         
         {/* Section Title */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 pb-4 border-b border-[#E7E5DF]">
           <div>
             <span className="font-condensed text-xs uppercase tracking-[0.25em] text-[#9E2A2B] font-bold block">
-              BỘ SƯU TẬP NĂNG LƯỢNG ĐỎ
+              {t('featured.badge')}
             </span>
             <h2 className="text-3xl sm:text-4xl font-heading font-medium text-[#1F1C17] mt-1">
-              Sản phẩm son dưỡng thuần chay Gaco
+              {t('featured.title')}
             </h2>
           </div>
 
@@ -47,7 +51,7 @@ export const FeaturedProductsSection = () => {
             to="/product"
             className="font-condensed text-base uppercase tracking-wider text-[#1F1C17] hover:text-[#9E2A2B] font-bold flex items-center gap-1.5"
           >
-            <span>Khám phá chi tiết công thức</span>
+            <span>{t('featured.viewDetail')}</span>
             <span>→</span>
           </Link>
         </div>
@@ -108,10 +112,10 @@ export const FeaturedProductsSection = () => {
         <div className="mt-10 p-4 border border-[#E7E5DF] bg-[#F4EFE6] max-w-4xl mx-auto flex items-center justify-between gap-4 text-xs text-[#666055] font-light">
           <span className="flex items-center gap-2">
             <Sparkles size={16} className="text-[#9E2A2B]" />
-            <span>Bao bì giấy Kraft phân hủy sinh học 100% • Tặng kèm túi vải thô khi đặt combo</span>
+            <span>{isEn ? '100% Biodegradable Kraft Paper Packaging • Complimentary Raw Canvas Tote with Combo' : 'Bao bì giấy Kraft phân hủy sinh học 100% • Tặng kèm túi vải thô khi đặt combo'}</span>
           </span>
           <Link to="/about" className="font-condensed uppercase tracking-wider text-xs font-bold text-[#1F1C17] hover:text-[#9E2A2B] underline">
-            Tìm hiểu thêm
+            {isEn ? 'LEARN MORE' : 'Tìm hiểu thêm'}
           </Link>
         </div>
 
