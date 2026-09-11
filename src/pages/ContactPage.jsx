@@ -83,7 +83,7 @@ export const ContactPage = () => {
                     <MapPin size={18} className="text-[#C5A25D] mt-0.5 shrink-0" />
                     <div>
                       <p className="font-heading font-semibold text-[#1F1C17]">{isEn ? 'Headquarters & Showroom' : 'Trụ sở chính & Phòng trưng bày'}</p>
-                      <p className="text-xs text-[#97958F] mt-0.5">123 Đường Nông Nghiệp Xanh, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh</p>
+                      <p className="text-xs text-[#97958F] mt-0.5">{isEn ? '79, Ho Tung Mau, Cau Giay, Hanoi, Vietnam' : '79, Hồ Tùng Mậu, Cầu Giấy, Hà Nội, Việt Nam'}</p>
                     </div>
                   </li>
 
@@ -292,8 +292,8 @@ export const ContactPage = () => {
             </h3>
             <p className="text-xs sm:text-sm text-[#666055] font-light max-w-lg mx-auto leading-relaxed">
               {isEn
-                ? 'Visit our experience counter at 123 Green Agriculture St, Ben Nghe Ward, District 1, HCMC to sample our natural balm and receive a complimentary tester.'
-                : 'Mời bạn ghé thăm quầy trải nghiệm tại số 123 Đường Nông Nghiệp Xanh, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh để thử chất son tự nhiên và nhận mẫu dùng thử.'}
+                ? 'Visit our experience counter at 79, Ho Tung Mau, Cau Giay, Hanoi, Vietnam to sample our natural balm and receive a complimentary tester.'
+                : 'Mời bạn ghé thăm quầy trải nghiệm tại số 79, Hồ Tùng Mậu, Cầu Giấy, Hà Nội, Việt Nam để thử chất son tự nhiên và nhận mẫu dùng thử.'}
             </p>
             <div className="pt-2">
               <span className="inline-block px-3 py-1 bg-[#FEFBF4] border border-[#E7E5DF] text-xs font-condensed uppercase tracking-wider text-[#7BAD34] font-bold">

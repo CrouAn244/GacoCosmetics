@@ -224,5 +224,6 @@ export const SOCIAL_LINKS = {
   facebook: 'https://facebook.com/gacocosmetics.vietnam',
   messenger: 'https://m.me/gacocosmetics.vietnam',
   hotline: '0988.123.456',
-  email: 'contact@gacocosmetics.vn'
+  email: 'contact@gacocosmetics.vn',
+  address: '79, Hồ Tùng Mậu, Cầu Giấy, Hà Nội, Việt Nam'
 };

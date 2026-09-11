@@ -26,7 +26,9 @@ export const SEO = ({
     description: 'Thương hiệu mỹ phẩm thuần chay từ 100% nông sản Việt',
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'TP. Hồ Chí Minh',
+      streetAddress: '79 Hồ Tùng Mậu',
+      addressLocality: 'Cầu Giấy',
+      addressRegion: 'Hà Nội',
       addressCountry: 'VN'
     }
   };
