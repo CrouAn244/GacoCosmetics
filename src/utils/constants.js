@@ -4,14 +4,18 @@ import gacImg from '../assets/images/gac-macro.jpg';
 import coconutImg from '../assets/images/coconut-macro.jpg';
 import farmImg from '../assets/images/farm-harvest.jpg';
 import swatchImg from '../assets/images/lip-swatch.jpg';
+import comboDuoImg from '../assets/images/combo-duo.jpg';
+import comboMaternityImg from '../assets/images/combo-maternity.jpg';
 
 export const ASSETS = {
   hero: heroImg,
+  comboDuo: comboDuoImg,
+  comboMaternity: comboMaternityImg,
   gac: gacImg,
   coconut: coconutImg,
   farm: farmImg,
   swatch: swatchImg,
-  gallery: [heroImg, gacImg, coconutImg, farmImg, swatchImg]
+  gallery: [heroImg, comboDuoImg, comboMaternityImg, swatchImg, gacImg, coconutImg, farmImg]
 };
 
 export const PRODUCT_INFO = {
@@ -21,6 +25,8 @@ export const PRODUCT_INFO = {
   subtitleEn: 'Crafted with ripe Vietnamese gac fruit and cold-pressed virgin coconut oil',
   singlePrice: 79000,
   comboPrice: 149000,
+  maternityPrice: 149000,
+  maternityOldPrice: 189000,
   volume: '5g / 0.17 oz',
   origin: '100% Nông sản Việt Nam (Đồng bằng sông Cửu Long & Bến Tre)',
   shelfLife: '18 tháng kể từ NSX (6 tháng sau khi mở nắp)',

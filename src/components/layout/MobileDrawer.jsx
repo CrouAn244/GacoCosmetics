@@ -84,11 +84,14 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                     <ChevronRight size={18} className="text-[#97958F]" />
                   </NavLink>
                   <div className="pl-3 py-1 space-y-2 text-sm text-[#97958F]">
-                    <NavLink to="/product" onClick={onClose} className="block hover:text-[#1F1C17]">
+                    <NavLink to="/product?plan=single" onClick={onClose} className="block hover:text-[#1F1C17]">
                       • {t('featured.singleName')} (79.000đ)
                     </NavLink>
-                    <NavLink to="/product" onClick={onClose} className="block hover:text-[#1F1C17]">
+                    <NavLink to="/product?plan=combo" onClick={onClose} className="block hover:text-[#1F1C17]">
                       • {t('featured.comboName')} (149.000đ)
+                    </NavLink>
+                    <NavLink to="/product?plan=maternity" onClick={onClose} className="block hover:text-[#1F1C17]">
+                      • {t('featured.maternityName')} (149.000đ)
                     </NavLink>
                   </div>
                 </div>

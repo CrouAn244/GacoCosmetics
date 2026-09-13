@@ -17,7 +17,8 @@ export const FeaturedProductsSection = () => {
       image: ASSETS.hero,
       badge: t('featured.singleBadge'),
       stock: t('featured.singleStock'),
-      tag: t('featured.singleTag')
+      tag: t('featured.singleTag'),
+      link: '/product?plan=single'
     },
     {
       id: 'gaco-combo',
@@ -25,10 +26,23 @@ export const FeaturedProductsSection = () => {
       subtitle: t('featured.comboSubtitle'),
       price: t('featured.comboPrice'),
       oldPrice: t('featured.comboOldPrice'),
-      image: ASSETS.swatch,
+      image: ASSETS.comboDuo,
       badge: t('featured.comboBadge'),
       stock: t('featured.comboStock'),
-      tag: t('featured.comboTag')
+      tag: t('featured.comboTag'),
+      link: '/product?plan=combo'
+    },
+    {
+      id: 'gaco-maternity',
+      name: t('featured.maternityName'),
+      subtitle: t('featured.maternitySubtitle'),
+      price: t('featured.maternityPrice'),
+      oldPrice: t('featured.maternityOldPrice'),
+      image: ASSETS.comboMaternity,
+      badge: t('featured.maternityBadge'),
+      stock: t('featured.maternityStock'),
+      tag: t('featured.maternityTag'),
+      link: '/product?plan=maternity'
     }
   ];
 
@@ -56,24 +70,24 @@ export const FeaturedProductsSection = () => {
           </Link>
         </div>
 
-        {/* Product Card Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* Product Card Grid (3 Columns) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {products.map((item) => (
             <div
               key={item.id}
               className="bg-[#FEFBF4] border border-[#E7E5DF] flex flex-col justify-between group hover:border-[#9E2A2B] transition-colors"
             >
               {/* Product Image */}
-              <div className="relative aspect-square overflow-hidden bg-[#F4EFE6]">
+              <Link to={item.link} className="relative aspect-square overflow-hidden bg-[#F4EFE6] block">
                 <img
                   src={item.image}
                   alt={item.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-3 left-3 bg-[#9E2A2B] text-[#FEFBF4] font-condensed text-[11px] uppercase tracking-wider px-3 py-1 font-bold">
+                <div className="absolute top-3 left-3 bg-[#9E2A2B] text-[#FEFBF4] font-condensed text-[11px] uppercase tracking-wider px-3 py-1 font-bold shadow-xs">
                   {item.badge}
                 </div>
-              </div>
+              </Link>
 
               {/* Product Info Bar */}
               <div className="p-5 flex items-end justify-between border-t border-[#E7E5DF]">
@@ -82,7 +96,7 @@ export const FeaturedProductsSection = () => {
                     {item.tag}
                   </span>
                   <h4 className="font-heading font-semibold text-lg text-[#1F1C17] group-hover:text-[#9E2A2B] transition-colors leading-snug">
-                    <Link to="/product">{item.name}</Link>
+                    <Link to={item.link}>{item.name}</Link>
                   </h4>
                   <p className="text-xs text-[#97958F] line-clamp-2 leading-relaxed font-light">{item.subtitle}</p>
                   
@@ -97,9 +111,9 @@ export const FeaturedProductsSection = () => {
 
                 {/* Gaco Ruby Add Button */}
                 <Link
-                  to="/product"
+                  to={item.link}
                   className="w-12 h-12 bg-[#9E2A2B] hover:bg-[#7C1D1E] text-white flex items-center justify-center transition-colors shrink-0"
-                  aria-label="Thêm vào giỏ hàng"
+                  aria-label="Xem và mua sản phẩm"
                 >
                   <ShoppingBag size={20} />
                 </Link>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Star, ShoppingBag, ChevronDown, ChevronUp, Check, ShieldCheck, Truck, RefreshCw, Sparkles, Gift } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { SEO } from '../utils/seo';
@@ -9,9 +9,11 @@ import { ASSETS, PRODUCT_INFO, SOCIAL_LINKS } from '../utils/constants';
 export const ProductPage = () => {
   const { t, i18n } = useTranslation();
   const isEn = (i18n.language || 'vi').toLowerCase().startsWith('en');
+  const [searchParams] = useSearchParams();
+  
   const [activeImgIdx, setActiveImgIdx] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [selectedPlan, setSelectedPlan] = useState('single'); // 'single' | 'combo'
+  const [selectedPlan, setSelectedPlan] = useState('single'); // 'single' | 'combo' | 'maternity'
   const [activeTab, setActiveTab] = useState('benefits');
   const [orderModalOpen, setOrderModalOpen] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
@@ -24,17 +26,54 @@ export const ProductPage = () => {
 
   const images = ASSETS.gallery;
 
+  // Sync plan from URL search parameters if present
+  useEffect(() => {
+    const plan = searchParams.get('plan');
+    if (plan === 'maternity') {
+      setSelectedPlan('maternity');
+      setActiveImgIdx(2);
+    } else if (plan === 'combo') {
+      setSelectedPlan('combo');
+      setActiveImgIdx(1);
+    } else if (plan === 'single') {
+      setSelectedPlan('single');
+      setActiveImgIdx(0);
+    }
+  }, [searchParams]);
+
+  const handleSelectPlan = (plan) => {
+    setSelectedPlan(plan);
+    if (plan === 'single') {
+      setActiveImgIdx(0);
+    } else if (plan === 'combo') {
+      setActiveImgIdx(1);
+    } else if (plan === 'maternity') {
+      setActiveImgIdx(2);
+    }
+  };
+
+  const handleThumbnailClick = (i) => {
+    setActiveImgIdx(i);
+    if (i === 0) setSelectedPlan('single');
+    else if (i === 1) setSelectedPlan('combo');
+    else if (i === 2) setSelectedPlan('maternity');
+  };
+
   const handleOrderSubmit = (e) => {
     e.preventDefault();
     setOrderSuccess(true);
     try {
       const orders = JSON.parse(localStorage.getItem('gaco_orders')) || [];
+      const planName = selectedPlan === 'maternity'
+        ? (isEn ? `Gaco Maternity Gift Set (Qty: ${quantity})` : `Hộp Quà Gaco Mẹ Bầu An Lành (SL: ${quantity})`)
+        : selectedPlan === 'combo'
+        ? (isEn ? `Gaco Botanical Duo Gift Set (2 Tubes) (Qty: ${quantity})` : `Combo 2 Thỏi Gaco Tiết Kiệm (SL: ${quantity})`)
+        : (isEn ? `Gaco Single Tube 5g (Qty: ${quantity})` : `Thỏi Đơn Gaco 5g (SL: ${quantity})`);
+
       orders.push({
         id: 'ORD_' + Date.now(),
-        product: selectedPlan === 'combo'
-          ? (isEn ? `Gaco Botanical Duo Gift Set (2 Tubes) (Qty: ${quantity})` : `Hộp Quà Gaco Botanical (2 Thỏi) (SL: ${quantity})`)
-          : (isEn ? `Gaco Single Tube 5g (Qty: ${quantity})` : `Thỏi Đơn Gaco 5g (SL: ${quantity})`),
-        total: (selectedPlan === 'combo' ? 149000 : 79000) * quantity,
+        product: planName,
+        total: (selectedPlan === 'single' ? 79000 : 149000) * quantity,
         ...orderForm,
         createdAt: new Date().toISOString()
       });
@@ -133,25 +172,35 @@ export const ProductPage = () => {
                 <img
                   src={images[activeImgIdx]}
                   alt="Gaco Lip Balm"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-opacity duration-300"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-[#9E2A2B] text-white font-condensed text-[11px] uppercase tracking-wider font-bold">
-                    {t('common.vegan')}
+                  <span className="px-3 py-1 bg-[#9E2A2B] text-white font-condensed text-[11px] uppercase tracking-wider font-bold shadow-xs">
+                    {activeImgIdx === 1
+                      ? (isEn ? 'VALUE DUO COMBO' : 'COMBO 2 THỎI')
+                      : activeImgIdx === 2
+                      ? (isEn ? 'MATERNITY CARE COMBO' : 'COMBO CHO MẸ BẦU')
+                      : t('common.vegan')}
                   </span>
                 </div>
               </div>
 
               {/* Thumbnails Row */}
-              <div className="grid grid-cols-5 gap-3">
+              <div className="grid grid-cols-7 gap-2">
                 {images.map((img, i) => (
                   <button
                     key={i}
                     type="button"
-                    onClick={() => setActiveImgIdx(i)}
+                    onClick={() => handleThumbnailClick(i)}
                     className={`aspect-square border overflow-hidden p-0.5 transition-all ${
-                      activeImgIdx === i ? 'border-[#9E2A2B] ring-1 ring-[#9E2A2B]' : 'border-[#E7E5DF] opacity-70 hover:opacity-100'
+                      activeImgIdx === i ? 'border-[#9E2A2B] ring-2 ring-[#9E2A2B]' : 'border-[#E7E5DF] opacity-70 hover:opacity-100'
                     }`}
+                    title={
+                      i === 0 ? 'Thỏi đơn 5g' :
+                      i === 1 ? 'Combo 2 thỏi' :
+                      i === 2 ? 'Combo mẹ bầu' :
+                      `Ảnh ${i + 1}`
+                    }
                   >
                     <img src={img} alt={`Thumb ${i}`} className="w-full h-full object-cover" />
                   </button>
@@ -205,43 +254,51 @@ export const ProductPage = () => {
               {/* Price */}
               <div className="py-3 border-y border-[#E7E5DF] flex items-baseline gap-4">
                 <span className="text-3xl font-bold font-heading text-[#9E2A2B]">
-                  {selectedPlan === 'combo' ? '149.000 đ' : '79.000 đ'}
+                  {selectedPlan === 'single' ? '79.000 đ' : '149.000 đ'}
                 </span>
-                {selectedPlan === 'combo' && (
-                  <span className="text-sm text-[#97958F] line-through">158.000 đ</span>
+                {selectedPlan !== 'single' && (
+                  <span className="text-sm text-[#97958F] line-through">
+                    {selectedPlan === 'combo' ? '158.000 đ' : '189.000 đ'}
+                  </span>
                 )}
                 <span className="text-xs font-condensed uppercase px-2.5 py-0.5 bg-[#FEFBF4] border border-[#9E2A2B] text-[#9E2A2B] font-bold">
-                  {selectedPlan === 'combo' ? (isEn ? 'FREE CANVAS TOTE + FREESHIP' : 'TẶNG TÚI VẢI MỘC + FREESHIP') : (isEn ? 'TRIAL OFFER 79K' : 'GIÁ TRẢI NGHIỆM 79K')}
+                  {selectedPlan === 'combo'
+                    ? (isEn ? 'SAVE 9K + FREESHIP' : 'TIẾT KIỆM 9K + FREESHIP')
+                    : selectedPlan === 'maternity'
+                    ? (isEn ? 'FREE CANVAS TOTE + CARE GUIDE' : 'TẶNG TÚI VẢI + CẨM NANG THAI KỲ')
+                    : (isEn ? 'TRIAL OFFER 79K' : 'GIÁ TRẢI NGHIỆM 79K')}
                 </span>
               </div>
 
-              {/* Package selector - Single vs Gaco Botanical Gift Set */}
+              {/* Package selector - Single vs Combo 2 Thỏi vs Combo Cho Mẹ Bầu */}
               <div className="space-y-2">
                 <span className="text-xs font-condensed uppercase tracking-wider font-bold text-[#1F1C17] block">
                   {isEn ? 'SELECT OPTION:' : 'CHỌN PHÂN LOẠI SẢN PHẨM:'}
                 </span>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {/* Option 1: Thỏi Đơn */}
                   <button
                     type="button"
-                    onClick={() => setSelectedPlan('single')}
+                    onClick={() => handleSelectPlan('single')}
                     className={`p-3.5 border text-left transition-all ${
                       selectedPlan === 'single'
-                        ? 'border-[#9E2A2B] bg-[#FDF2F2] text-[#1F1C17]'
-                        : 'border-[#E7E5DF] hover:border-[#1F1C17]'
+                        ? 'border-[#9E2A2B] bg-[#FDF2F2] text-[#1F1C17] ring-1 ring-[#9E2A2B]'
+                        : 'border-[#E7E5DF] hover:border-[#1F1C17] bg-[#FEFBF4]'
                     }`}
                   >
                     <p className="font-bold text-xs">{t('productPage.singleOption')}</p>
                     <p className="text-sm font-heading font-bold text-[#1F1C17] mt-1">79.000 đ</p>
-                    <p className="text-[10px] text-[#97958F] mt-0.5">{isEn ? '2-3 months daily use' : 'Dùng thử 2-3 tháng'}</p>
+                    <p className="text-[10px] text-[#97958F] mt-0.5">{t('productPage.singleDesc')}</p>
                   </button>
 
+                  {/* Option 2: Combo 2 Thỏi */}
                   <button
                     type="button"
-                    onClick={() => setSelectedPlan('combo')}
+                    onClick={() => handleSelectPlan('combo')}
                     className={`p-3.5 border text-left transition-all ${
                       selectedPlan === 'combo'
-                        ? 'border-[#9E2A2B] bg-[#FDF2F2] text-[#1F1C17]'
-                        : 'border-[#E7E5DF] hover:border-[#1F1C17]'
+                        ? 'border-[#9E2A2B] bg-[#FDF2F2] text-[#1F1C17] ring-1 ring-[#9E2A2B]'
+                        : 'border-[#E7E5DF] hover:border-[#1F1C17] bg-[#FEFBF4]'
                     }`}
                   >
                     <p className="font-bold text-xs flex items-center justify-between">
@@ -249,7 +306,25 @@ export const ProductPage = () => {
                       <span className="text-[10px] text-[#9E2A2B] font-bold">HOT</span>
                     </p>
                     <p className="text-sm font-heading font-bold text-[#9E2A2B] mt-1">149.000 đ</p>
-                    <p className="text-[10px] text-[#5E7A4A] font-medium mt-0.5">{isEn ? 'Free tote bag + Freeship' : 'Tặng túi vải + Freeship'}</p>
+                    <p className="text-[10px] text-[#5E7A4A] font-medium mt-0.5">{t('productPage.comboDesc')}</p>
+                  </button>
+
+                  {/* Option 3: Combo Cho Mẹ Bầu */}
+                  <button
+                    type="button"
+                    onClick={() => handleSelectPlan('maternity')}
+                    className={`p-3.5 border text-left transition-all ${
+                      selectedPlan === 'maternity'
+                        ? 'border-[#9E2A2B] bg-[#FDF2F2] text-[#1F1C17] ring-1 ring-[#9E2A2B]'
+                        : 'border-[#E7E5DF] hover:border-[#1F1C17] bg-[#FEFBF4]'
+                    }`}
+                  >
+                    <p className="font-bold text-xs flex items-center justify-between">
+                      <span>{t('productPage.maternityOption')}</span>
+                      <span className="text-[10px] text-[#7BAD34] font-bold">NEW</span>
+                    </p>
+                    <p className="text-sm font-heading font-bold text-[#9E2A2B] mt-1">149.000 đ</p>
+                    <p className="text-[10px] text-[#5E7A4A] font-medium mt-0.5">{t('productPage.maternityDesc')}</p>
                   </button>
                 </div>
               </div>
@@ -371,10 +446,16 @@ export const ProductPage = () => {
           <form onSubmit={handleOrderSubmit} className="space-y-4">
             <div className="p-3 bg-[#F4EFE6] border border-[#E7E5DF] text-xs">
               <p className="font-bold text-[#1F1C17]">
-                {isEn ? 'Plan:' : 'Gói:'} {selectedPlan === 'combo' ? (isEn ? 'Botanical Gift Set (2 Tubes)' : 'Hộp Quà Gaco Botanical (Combo 2 thỏi 149.000đ)') : (isEn ? 'Single Tube 5g (79,000 VND)' : 'Thỏi đơn 5g (79.000đ)')} × {quantity}
+                {isEn ? 'Plan:' : 'Gói:'} {
+                  selectedPlan === 'maternity'
+                    ? (isEn ? 'Gaco Maternity Care Set (Gift Tote & Guide 149,000 VND)' : 'Combo Cho Mẹ Bầu An Lành (Tặng Túi & Cẩm Nang 149.000đ)')
+                    : selectedPlan === 'combo'
+                    ? (isEn ? 'Gaco Value Duo Combo (2 Tubes 149,000 VND)' : 'Combo 2 Thỏi Tiết Kiệm (149.000đ)')
+                    : (isEn ? 'Single Tube 5g (79,000 VND)' : 'Thỏi đơn 5g (79.000đ)')
+                } × {quantity}
               </p>
               <p className="text-[#9E2A2B] font-bold text-sm mt-1">
-                {isEn ? 'Total:' : 'Tổng cộng:'} {((selectedPlan === 'combo' ? 149000 : 79000) * quantity).toLocaleString('vi-VN')} {isEn ? 'VND' : 'đ'}
+                {isEn ? 'Total:' : 'Tổng cộng:'} {(((selectedPlan === 'single' ? 79000 : 149000)) * quantity).toLocaleString('vi-VN')} {isEn ? 'VND' : 'đ'}
               </p>
               <p className="text-[11px] text-[#97958F] mt-1">{isEn ? 'Inspect upon delivery before payment (COD nationwide).' : 'Kiểm tra hàng trước khi thanh toán (COD toàn quốc).'}</p>
             </div>
