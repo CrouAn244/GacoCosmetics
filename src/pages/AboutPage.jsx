@@ -341,8 +341,8 @@ export const AboutPage = () => {
                   </h4>
                   <p className="text-xs text-[#666055] font-light leading-relaxed">
                     {isEn
-                      ? 'Sell: Reach 5,000 orders in Year 1. Serve: < 2 min response via chatbot and live-chat. Speak: Educate users on gac benefits. Save: Optimize eco packaging. Sizzle: Exclusive 149k combo trial voucher.'
-                      : 'Sell: Tiếp cận 5.000 đơn hàng năm đầu. Serve: Tốc độ phản hồi < 2 phút qua chatbot và live-chat. Speak: Giáo dục người dùng về gấc. Save: Tối ưu chi phí bao bì. Sizzle: Tặng voucher dùng thử 149k combo.'}
+                      ? 'Sell: 300 lip balms sold online (23,700,000 VND). Serve: 100% response < 2 mins via auto-chat; CSAT > 90%. Speak: Min 2,500 social engagements & 80 verified reviews. Sizzle: 1,500 TikTok followers & > 1,000 organic web visits. Save: Cut 40% customer acquisition costs via SEO & organic viral reels.'
+                      : 'Sell: Đạt mốc 300 thỏi son qua kênh số (doanh số 23.700.000đ). Serve: 100% tin nhắn phản hồi tự động < 2 phút, CSAT > 90%. Speak: Tối thiểu 2.500 lượt tương tác & 80 phản hồi thực tế. Sizzle: TikTok 1.500 followers & Web > 1.000 organic visits. Save: Giảm 40% chi phí tìm khách nhờ SEO và TikTok.'}
                   </p>
                 </div>
 

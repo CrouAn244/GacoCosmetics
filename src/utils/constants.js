@@ -6,8 +6,10 @@ import farmImg from '../assets/images/farm-harvest.jpg';
 import swatchImg from '../assets/images/lip-swatch.jpg';
 import comboDuoImg from '../assets/images/combo-duo.jpg';
 import comboMaternityImg from '../assets/images/combo-maternity.jpg';
+import logoImg from '../assets/images/Logo-gaco comestic.png';
 
 export const ASSETS = {
+  logo: logoImg,
   hero: heroImg,
   comboDuo: comboDuoImg,
   comboMaternity: comboMaternityImg,
@@ -29,7 +31,7 @@ export const PRODUCT_INFO = {
   maternityOldPrice: 189000,
   volume: '5g / 0.17 oz',
   origin: '100% Nông sản Việt Nam (Đồng bằng sông Cửu Long & Bến Tre)',
-  shelfLife: '18 tháng kể từ NSX (6 tháng sau khi mở nắp)',
+  shelfLife: '9–12 tháng kể từ NSX (100% không dùng chất bảo quản hóa học)',
   benefitsVi: [
     'Hồi sinh bờ môi khô nứt, bong tróc chỉ sau một đêm',
     'Để lại sắc ửng hồng cam đào tự nhiên từ màng gấc nguyên bản',
@@ -153,15 +155,15 @@ export const CONTENT_BANK_ARTICLES = [
   {
     id: 'seo-review-son-gaco',
     isSeoHero: true,
-    titleVi: 'Review Son Dưỡng Hữu Cơ Chiết Xuất Gấc & Dầu Dừa Gaco: Có Trị Thâm Môi Thật Không?',
-    titleEn: 'In-Depth Review: Gaco Organic Gac & Coconut Lip Balm – Does It Truly Brighten Dark Lips?',
+    titleVi: 'Review Son Dưỡng Hữu Cơ Chiết Xuất Gấc & Dầu Dừa Gaco: Đánh Bay Môi Thâm, Cấp Ẩm Thuần Chay Có Thực Sự Hiệu Quả?',
+    titleEn: 'Review: Gaco Organic Gac & Ben Tre Coconut Lip Balm – Lip Discoloration Relief & Vegan Hydration',
     categoryVi: 'Đánh giá & Kiểm chứng',
     categoryEn: 'Review & Proof',
     readTime: '6 phút đọc',
     date: '2026-09-05',
-    summaryVi: 'Đánh giá chi tiết son dưỡng Gaco từ bảng thành phần 100% thuần chay, test độ ẩm thực tế, khả năng lên màu tự nhiên và cam kết an toàn cho sinh viên, mẹ bầu.',
-    summaryEn: 'A detailed breakdown of Gaco Lip Balm, testing hydration longevity, natural blush tint, and 0% lead safety for students and pregnant mothers.',
-    keywords: ['son dưỡng gấc dầu dừa', 'son trị thâm môi', 'son dưỡng thiên nhiên', 'son cho bà bầu']
+    summaryVi: 'Review chi tiết son dưỡng hữu cơ Gaco chiết xuất gấc & dầu dừa Bến Tre: đánh bay môi thâm, cấp ẩm thuần chay, 0% chì, an toàn cho học sinh - sinh viên và mẹ bầu. Giá chỉ 79.000đ.',
+    summaryEn: 'Detailed review of Gaco Organic Lip Balm with gac aril & coconut oil: discoloration relief, 100% vegan, 0% lead, safe for students and expecting mothers.',
+    keywords: ['son dưỡng gấc dầu dừa', 'son trị thâm môi hữu cơ', 'son dưỡng thiên nhiên Gaco', 'son dưỡng cho bà bầu', 'son dưỡng thuần chay Việt Nam']
   },
   {
     id: 'art-1-vi-sao-moi-tham',

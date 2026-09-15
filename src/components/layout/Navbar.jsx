@@ -6,6 +6,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { LangToggle } from '../common/LangToggle';
 import { UserMenu } from '../auth/UserMenu';
 import { MobileDrawer } from './MobileDrawer';
+import { ASSETS } from '../../utils/constants';
 
 export const Navbar = () => {
   const { t } = useTranslation();
@@ -127,22 +128,16 @@ export const Navbar = () => {
             </button>
           </div>
 
-          {/* Center Brand Logo - Gaco Bespoke Botanical Emblem */}
+          {/* Center Brand Logo */}
           <div className="flex justify-center items-center">
-            <Link to="/" className="flex flex-col items-center group">
-              <div className="flex items-center gap-1 mb-0.5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#9E2A2B] group-hover:scale-110 transition-transform">
-                  <path d="M12 2C12 2 5 9.5 5 15C5 18.866 8.13401 22 12 22C15.866 22 19 18.866 19 15C19 9.5 12 2 12 2Z" fill="#9E2A2B" stroke="#C5A25D" strokeWidth="1.2" />
-                  <circle cx="12" cy="15" r="3.5" fill="#FEFBF4" />
-                  <circle cx="12" cy="15" r="1.8" fill="#9E2A2B" />
-                </svg>
-              </div>
-              <span className="font-heading text-3xl sm:text-4xl font-bold tracking-[0.22em] text-[#1F1C17] group-hover:text-[#9E2A2B] transition-colors leading-none">
-                GACO
-              </span>
-              <span className="font-condensed text-[9px] uppercase tracking-[0.35em] text-[#9E2A2B] font-bold mt-1">
-                ORIGINAL VIETNAM
-              </span>
+            <Link to="/" className="flex items-center justify-center group py-0.5" aria-label="Gaco Original Vietnam">
+              <img
+                src={ASSETS.logo}
+                alt="Gaco Original Vietnam"
+                className={`w-auto object-contain rounded-full transition-all duration-300 group-hover:scale-105 ${
+                  scrolled ? 'h-11 sm:h-12' : 'h-14 sm:h-16'
+                }`}
+              />
             </Link>
           </div>
 

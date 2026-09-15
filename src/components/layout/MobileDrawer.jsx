@@ -5,6 +5,7 @@ import { X, Search, ChevronRight, User, ShoppingBag } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth';
 import { LangToggle } from '../common/LangToggle';
+import { ASSETS } from '../../utils/constants';
 
 export const MobileDrawer = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
@@ -43,9 +44,13 @@ export const MobileDrawer = ({ isOpen, onClose }) => {
                   <X size={24} />
                 </button>
 
-                <div className="font-heading font-bold text-xl tracking-[0.2em] text-[#1F1C17]">
-                  GACO
-                </div>
+                <NavLink to="/" onClick={onClose} className="flex items-center">
+                  <img
+                    src={ASSETS.logo}
+                    alt="Gaco Original Vietnam"
+                    className="h-10 w-auto object-contain rounded-full"
+                  />
+                </NavLink>
 
                 {isAuthenticated ? (
                   <NavLink to="/account" onClick={onClose} className="p-1 text-[#C5A25D]">

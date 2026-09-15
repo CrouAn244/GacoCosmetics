@@ -5,7 +5,7 @@ export const SEO = ({
   title,
   description,
   keywords,
-  image = '/favicon.svg',
+  image = '/logo.png',
   url = 'https://gacocosmetics.vn',
   schemaType = 'Organization',
   schemaData = null
@@ -22,7 +22,7 @@ export const SEO = ({
     '@type': 'Organization',
     name: 'Gaco Cosmetics',
     url: 'https://gacocosmetics.vn',
-    logo: 'https://gacocosmetics.vn/favicon.svg',
+    logo: 'https://gacocosmetics.vn/logo.png',
     description: 'Thương hiệu mỹ phẩm thuần chay từ 100% nông sản Việt',
     address: {
       '@type': 'PostalAddress',

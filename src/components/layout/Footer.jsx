@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Phone, Mail, MapPin, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
-import { SOCIAL_LINKS } from '../../utils/constants';
+import { SOCIAL_LINKS, ASSETS } from '../../utils/constants';
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -46,14 +46,21 @@ export const Footer = () => {
           
           {/* Col 1: Brand Philosophy */}
           <div className="space-y-4">
-            <div className="flex flex-col">
-              <span className="font-heading font-bold text-2xl tracking-[0.25em] text-[#F3EFEA]">
-                GACO
-              </span>
-              <span className="text-[8px] uppercase tracking-[0.4em] text-[#A83B1B] font-semibold">
-                VIETNAM
-              </span>
-            </div>
+            <Link to="/" className="inline-flex items-center gap-3 group">
+              <img
+                src={ASSETS.logo}
+                alt="Gaco Original Vietnam"
+                className="h-12 w-auto object-contain rounded-full shadow-xs transition-transform group-hover:scale-105"
+              />
+              <div className="flex flex-col">
+                <span className="font-heading font-bold text-2xl tracking-[0.25em] text-[#F3EFEA] group-hover:text-[#A83B1B] transition-colors">
+                  GACO
+                </span>
+                <span className="text-[8px] uppercase tracking-[0.4em] text-[#A83B1B] font-semibold">
+                  ORIGINAL VIETNAM
+                </span>
+              </div>
+            </Link>
 
             <p className="text-xs text-[#A39A91] leading-relaxed">
               {t('footer.desc')}
